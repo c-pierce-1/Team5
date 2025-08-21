@@ -1,5 +1,5 @@
 # Your Name
-Sarah Parisi
+Sarah Isabella Parisi
 
 ## About Me
 My name is Sarah Parisi, I am a junior at UNCG. My hobbies are cooking, birding, photography and hiking.
