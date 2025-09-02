@@ -15,7 +15,7 @@ to ensure a seamless, transparent, and user-friendly booking experience.
 ## App Functions
 
 1. Customer (Charles Pierce):
-    1. Create/modify customer profile - Resgister as a customer
+    1. Create/modify customer profile - Register as a customer
     2. View available services - Browse catalog of listings as well as filter by location.
     3. Subscribe to available services - Users can favortie a listing and book it for vacation.
     4. Write reviews for subscribed services - Users can go to listing page and leave a review.
