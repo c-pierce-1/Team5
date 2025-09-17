@@ -141,7 +141,7 @@ Any device that has web browser capabilities
 * NFR 2: The average user should be able to find a specific listing they already know exists in less than 30 seconds, either through using the search function, or their favorites.
 
 #### 3.2.2 Security
-* NFR 3: The system will only allow authorized users, who have an account and are logged in, to create/book listings.
+* NFR 3: The system should only allow authorized users, who have an account and are logged in, to create/book listings.
 
 #### 3.2.3 Reliability
 
