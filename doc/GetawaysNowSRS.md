@@ -2,9 +2,9 @@
 ## For <project name>
 
 Version 0.1  
-Prepared by <author>  
-<organization>  
-<date created> 
+Prepared by Charles Pierce & Sarah Parisi  
+CSC340  
+September 12, 2025
 
 Table of Contents
 =================
@@ -61,7 +61,7 @@ Property owners can:
 ### 1.3 Definitions, Acronyms and Abbreviations            
 | Reference  | Definition                                                                                                                                                                         |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
+| Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for GetawaysNow                |
 | Postgresql | Open-source relational database management system.                                                                                                                                 |
 | API        | Application Programming Interface. This will be used to interface the backend and the fronted of our application.                                                                  |
 | HTML       | Hypertext Markup Language. This is the code that will be used to structure and design the web application and its content.                                                         |
@@ -114,15 +114,13 @@ The following assumptions and dependencies may impact the system’s requirement
 ## 3. Requirements
 
 ### 3.1 Functional Requirements 
-This section specifies the software product's requirements. Specify all of the software requirements to a level of detail sufficient to enable designers to design a software system to satisfy those requirements, and to enable testers to test that the software system satisfies those requirements.
-
-The specific requirements should:
-* Be uniquely identifiable.
-* State the subject of the requirement (e.g., system, software, etc.) and what shall be done.
-* Optionally state the conditions and constraints, if any.
-* Describe every input (stimulus) into the software system, every output (response) from the software system, and all functions performed by the software system in response to an input or in support of an output.
-* Be verifiable (e.g., the requirement realization can be proven to the customer's satisfaction)
-* Conform to agreed upon syntax, keywords, and terms.
+* FR0: The system will allow users to create an account.
+* FR1: The system will allow users to register as a property owner and create their own listings.
+* FR2: The system shall allow all users to browse a list of listings, or search for specific ones.
+* FR3: The system will allow users to favorite certain listings.
+* FR4: The system will allow customers to review listings that they booked, after their visit is over.
+* FR5: The system will allow providers to respond to customer reviews.
+* FR6: All users will be able to modify/update their profiles at anytime.
 
 #### 3.1.1 User interfaces
 Define the software components for which a user interface is needed. Describe the logical characteristics of each interface between the software product and the users. This may include sample screen images, any GUI standards or product family style guides that are to be followed, screen layout constraints, standard buttons and functions (e.g., help) that will appear on every screen, keyboard shortcuts, error message display standards, and so on. Details of the user interface design should be documented in a separate user interface specification.
