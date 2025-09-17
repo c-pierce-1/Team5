@@ -37,46 +37,79 @@ Table of Contents
 ## Revision History
 | Name | Date    | Reason For Changes  | Version   |
 | ---- | ------- | ------------------- | --------- |
-|      |         |                     |           |
+| SP   | 09/2025 | Inital Changes 1 & 2| V 0.0.1   |
 |      |         |                     |           |
 |      |         |                     |           |
 
 ## 1. Introduction
 
 ### 1.1 Document Purpose
-Describe the purpose of the SRS and its intended audience.
+The purpose of this Software Requirements Specification (SRS) is to define the functional and non-functional requirements for Getaways Now. The SRS will also serve as a reference for future maintenance and enhancement activities throught this semester.
 
 ### 1.2 Product Scope
-Identify the product whose software requirements are specified in this document, including the revision or release number. Explain what the product that is covered by this SRS will do, particularly if this SRS describes only part of the system or a single subsystem. 
-Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.
+Getaways Now is a vacation rental application designed to connect property owners with travelers seeking short-term accommodations. This SRS outlines the requirements for version 1.0 of the platform, which includes core functionalities for property listing, search, booking, and user interaction.
 
-### 1.3 Definitions, Acronyms and Abbreviations                                                                                                                                                                          |
+The software enables customers to:
+- Search for rental properties by location, availability, and price
+- View detailed property descriptions and compare listings
+- Book accommodations securely through the platform
+Property owners can:
+- Create and manage property listings with photos, pricing, and availability
+- Communicate with potential renters through integrated messaging
+- Access booking statistics and performance analytics
+
+### 1.3 Definitions, Acronyms and Abbreviations            
+| Reference  | Definition                                                                                                                                                                         |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
+| Postgresql | Open-source relational database management system.                                                                                                                                 |
+| API        | Application Programming Interface. This will be used to interface the backend and the fronted of our application.                                                                  |
+| HTML       | Hypertext Markup Language. This is the code that will be used to structure and design the web application and its content.                                                         |
+| CSS        | Cascading Style Sheets. Will be used to add styles and appearance to the web app.                                                                                                  |
+| JavaScript | An object-oriented computer programming language commonly used to create interactive effects within web browsers.Will be used in conjuction with HTML and CSS to make the web app. |
+| VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |
+|            |                                                              
 
 ### 1.4 References
-List any other documents or Web addresses to which this SRS refers. These may include user interface style guides, contracts, standards, system requirements specifications, use case documents, or a vision and scope document. Provide enough information so that the reader could access a copy of each reference, including title, author, version number, date, and source or location.
 
 ### 1.5 Document Overview
-Describe what the rest of the document contains and how it is organized.
+Pass this point this document will cover an overview of Getaways Now as well as go into detail of the specified functional and non-functional requirments for this system.
 
 ## 2. Product Overview
 This section should describe the general factors that affect the product and its requirements. This section does not state specific requirements. Instead, it provides a background for those requirements, which are defined in detail in Section 3, and makes them easier to understand.
 
 ### 2.1 Product Functions
-Summarize the major functions the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.
+At a high level, Getaways Now will support the following major functions: 
+  - Rental search
+  - Listing management
+  - Booking system
+  - Profile Management
+  - Listing Statistics
 
 ### 2.2 Product Constraints
-This subsection should provide a general description of any other items that will limit the developer’s options. These may include:  
+Getaways Now is should follow the following constraints:  
 
-* Interfaces to users, other applications or hardware.  
-* Quality of service constraints.  
-* Standards compliance.  
-* Constraints around design or implementation.
+* Web-based application
+* Should not take more than 2 secs to load screens and listings 
+* Will follow a code and design standard that way it is easily legiable for future developers
+* Must be inline with standards established during class lectures
   
 ### 2.3 User Characteristics
-Identify the various user classes that you anticipate will use this product. User classes may be differentiated based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, educational level, or experience. Describe the pertinent characteristics of each user class. Certain requirements may pertain only to certain user classes. Distinguish the most important user classes for this product from those who are less important to satisfy.
+There are two types of users
+  - Customers: Customers are users that come to this application in search of rental homes for vacations
+  - Providers: Providers are property owners who come to this application to list their properties for rent.
 
 ### 2.4 Assumptions and Dependencies
-List any assumed factors (as opposed to known facts) that could affect the requirements stated in the SRS. These could include third-party or commercial components that you plan to use, issues around the development or operating environment, or constraints. The project could be affected if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project has on external factors, such as software components that you intend to reuse from another project, unless they are already documented elsewhere (for example, in the vision and scope document or the project plan).
+The following assumptions and dependencies may impact the system’s requirements:
+- Assumptions
+  - Users will have access to stable internet connections
+  - Third-party APIs (e.g., Stripe, Google Maps) will remain available and stable
+  - Users will access the platform via modern browsers (Chrome, Firefox, Safari)
+- Dependenciesg
+  - Google Maps API for geolocation and property mapping
+  - Email service provider for booking confirmations and notifications
+  - Hosting infrastructure (e.g., Github) for deployment
+
 
 ## 3. Requirements
 
