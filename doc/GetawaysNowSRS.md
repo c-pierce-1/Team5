@@ -2,9 +2,9 @@
 ## For <project name>
 
 Version 0.1  
-Prepared by <author>  
-<organization>  
-<date created> 
+Prepared by Charles Pierce & Sarah Parisi  
+CSC340  
+September 12, 2025
 
 Table of Contents
 =================
@@ -61,7 +61,7 @@ Property owners can:
 ### 1.3 Definitions, Acronyms and Abbreviations            
 | Reference  | Definition                                                                                                                                                                         |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
+| Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for GetawaysNow                |
 | Postgresql | Open-source relational database management system.                                                                                                                                 |
 | API        | Application Programming Interface. This will be used to interface the backend and the fronted of our application.                                                                  |
 | HTML       | Hypertext Markup Language. This is the code that will be used to structure and design the web application and its content.                                                         |
@@ -114,46 +114,43 @@ The following assumptions and dependencies may impact the system’s requirement
 ## 3. Requirements
 
 ### 3.1 Functional Requirements 
-This section specifies the software product's requirements. Specify all of the software requirements to a level of detail sufficient to enable designers to design a software system to satisfy those requirements, and to enable testers to test that the software system satisfies those requirements.
-
-The specific requirements should:
-* Be uniquely identifiable.
-* State the subject of the requirement (e.g., system, software, etc.) and what shall be done.
-* Optionally state the conditions and constraints, if any.
-* Describe every input (stimulus) into the software system, every output (response) from the software system, and all functions performed by the software system in response to an input or in support of an output.
-* Be verifiable (e.g., the requirement realization can be proven to the customer's satisfaction)
-* Conform to agreed upon syntax, keywords, and terms.
+* FR0: The system will allow users to create an account.
+* FR1: The system will allow users to register as a property owner and create their own listings.
+* FR2: The system shall allow all users to browse a list of listings, or search for specific ones.
+* FR3: The system will allow users to favorite certain listings.
+* FR4: The system will allow customers to review listings that they booked, after their visit is over.
+* FR5: The system will allow providers to respond to customer reviews.
+* FR6: All users will be able to modify/update their profiles at anytime.
 
 #### 3.1.1 User interfaces
-Define the software components for which a user interface is needed. Describe the logical characteristics of each interface between the software product and the users. This may include sample screen images, any GUI standards or product family style guides that are to be followed, screen layout constraints, standard buttons and functions (e.g., help) that will appear on every screen, keyboard shortcuts, error message display standards, and so on. Details of the user interface design should be documented in a separate user interface specification.
-
-Could be further divided into Usability and Convenience requirements.
+Web pages using HTML, CSS, and JavaScript
 
 #### 3.1.2 Hardware interfaces
-Describe the logical and physical characteristics of each interface between the software product and the hardware components of the system. This may include the supported device types, the nature of the data and control interactions between the software and the hardware, and communication protocols to be used.
+Any device that has web browser capabilities
 
 #### 3.1.3 Software interfaces
-Describe the connections between this product and other specific software components (name and version), including databases, operating systems, tools, libraries, and integrated commercial components. Identify the data items or messages coming into the system and going out and describe the purpose of each. Describe the services needed and the nature of communications. Refer to documents that describe detailed application programming interface protocols. Identify data that will be shared across software components. If the data sharing mechanism must be implemented in a specific way (for example, use of a global data area in a multitasking operating system), specify this as an implementation constraint.
+* Java jdk 21
+* PostgreSQL 17
+* SpringBoot 3.4.5
 
 ### 3.2 Non Functional Requirements 
+* NFR 0: The "create listing" function should be intuitive for beginner providers.
 
 #### 3.2.1 Performance
-If there are performance requirements for the product under various circumstances, state them here and explain their rationale, to help the developers understand the intent and make suitable design choices. Specify the timing relationships for real time systems. Make such requirements as specific as possible. You may need to state performance requirements for individual functional requirements or features.
+* NFR 1: The log in process should not take longer than 10 seconds, when given valid credentials.
+* NFR 2: The average user should be able to find a specific listing they already know exists in less than 30 seconds, either through using the search function, or their favorites.
 
 #### 3.2.2 Security
-Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.
+* NFR 3: The system will only allow authorized users, who have an account and are logged in, to create/book listings.
 
 #### 3.2.3 Reliability
-Specify the factors required to establish the required reliability of the software system at time of delivery.
 
 #### 3.2.4 Availability
-Specify the factors required to guarantee a defined availability level for the entire system such as checkpoint, recovery, and restart.
+* NFR 4: Getaways Now will be available 24/7, with required maintenance updates scheduled past midnight.
 
 #### 3.2.5 Compliance
-Specify the requirements derived from existing standards or regulations
 
 #### 3.2.6 Cost
-Specify monetary cost of the software product.
-
+* NFR 5: This project will cost nothing to create.
 #### 3.2.7 Deadline
-Specify schedule for delivery of the software product.
+* NFR 7: The final version of the project must be delivered by December 2025.
