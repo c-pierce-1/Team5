@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Custom Nav Bar</title>
+  <title>Create/Edit Listing</title>
   <link rel="stylesheet" href="/high-fidelity-prototype/Style-Sheet.css" />
-  <!-- Bootstrap Icons for the three dots -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
 <body>
- <nav class="navbar">
+  <!-- Navigation Bar -->
+   <nav class="navbar">
     <div class="container-fluid">
       <ul class="navbar-nav flex-row align-items-center">
         <!-- Three dots dropdown -->
@@ -48,64 +48,63 @@
       </div>
     </div>
   </nav>
-    <div class="profile-container">
-    <!-- Header -->
-    <div class="profile-header">
-      <h1>Profile Page</h1>
-    </div>
-
-    <!-- Profile Image -->
-    <div class="profile-image">
-      <label for="upload">
-        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="avatar" />
-        <div class="camera-icon">📷</div>
-      </label>
-      <input type="file" id="upload" style="display: none;" />
-    </div>
-
-    <!-- Info Fields -->
-    <div class="profile-info">
-      <div class="info-row" data-field="username">
-        <label>Username:</label>
-        <span class="value">SarahDev</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-      <div class="info-row">
-        <label>Phone:</label>
-        <span class="value">(555) 123-4567</span>
-         <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-      <div class="info-row">
-        <label>Name:</label>
-        <span class="value">Sarah Johnson</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="profile-stats">
-      <div class="stat-box">
-        <h3>Total Listings</h3>
-        <p>2</p>
-      </div>
-      <div class="stat-box">
-        <h3>Total Following</h3>
-        <p>0</p>
+  <div class="form-and-carousel">
+  <!-- Image Upload + Carousel on the LEFT -->
+  <div class="image-section">
+    <div class="image-carousel">
+      <div class="slides-listing" id="preview-slides"></div>
+      <div class="nav">
+        <button onclick="prevPreviewSlide()">❮</button>
+        <button onclick="nextPreviewSlide()">❯</button>
       </div>
     </div>
-
-    <!-- Edit Listings -->
-    <div class="edit-listings">
-      <h3>Edit Listings</h3>
-      <button class="edit-btn">Edit</button>
+    <div class="form-group">
+      <label for="images">Upload Images:</label>
+      <input type="file" id="images" name="images" accept="image/*" multiple />
     </div>
+
   </div>
+
+  <!-- Listing Form on the RIGHT -->
+  <form id="listing-form" class="listing-form-container">
+    <div class="form-header">
+      <h1>Create/Edit Listing</h1>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter listing name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter address" required />
+    </div>
+
+    <div class="form-group">
+      <label for="desc">Description:</label>
+      <textarea id="desc" name="desc" placeholder="Enter description" rows="4" required></textarea>
+    </div>
+
+    <div class="price-section">
+      <h3>Price Per Night</h3>
+      <input type="number" id="Price" name="price" placeholder="Enter Price Per night" required />
+    </div>
+
+
+    <div class="rules-section">
+      <h3>Rules</h3>
+      <textarea id="rules" name="rules" placeholder="Enter rules or guidelines" rows="5"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" id="submit-btn">Save Listing</button>
+      <button type="reset">Clear</button>
+    </div>
+  </form>
+</div>
+
+  <script src="/high-fidelity-prototype/scripting/listingLogic.js"></script>
   <script src="/high-fidelity-prototype/scripting/script.js"></script>
 </body>
 </html>
