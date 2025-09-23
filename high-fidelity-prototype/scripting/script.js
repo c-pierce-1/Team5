@@ -19,14 +19,14 @@ const rentals = [
     location: "1286 East Bend NC",
     description: "Cozy cabin located just on the top of a mountain with a cozy view.",
     price: "$180/night",
-    images: ["/images/CozyCabins1.jpg", "/images/CozyCabins2.jpg", "/images/CozyCabins3.jpg"]
+    images: ["/high-fidelity-prototype/images/CozyCabins1.jpg", "/high-fidelity-prototype/images/CozyCabins2.jpg", "/high-fidelity-prototype/images/CozyCabins3.jpg"]
   },
   {
     title: "Mountain Escape",
     location: "Blue Ridge Parkway",
     description: "A peaceful retreat with panoramic views.",
     price: "$220/night",
-    images: ["/images/mountain1.jpg", "/images/mountain2.jpg", "/images/mountain3.jpg"]
+    images: ["/high-fidelity-prototype/images/mountain1.jpg", "/high-fidelity-prototype/images/mountain2.jpg", "/high-fidelity-prototype/images/mountain3.jpg"]
   }
 ];
 
@@ -37,7 +37,7 @@ const slideIndices = {};
 function createCarousel(rental, index) {
   const slideId = `slides-${index}`;
   const slides = rental.images.map(img =>
-    `<a href="Listing.html" class="slide" style="background-image: url('${img}')"></a>`
+    `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
   ).join("");
 
   return `
@@ -54,7 +54,7 @@ function createCarousel(rental, index) {
         <h1>${rental.title}</h1>
         <p>${rental.location}</p>
         <p>${rental.description}</p>
-        <button class="price-button" onclick="window.location.href='/listing/${rental.title.replace(/\s+/g, '-').toLowerCase()}.html'">
+        <button class="price-button" onclick="window.location.href='/high-fidelity-prototype/customer-prototype/listing/${rental.title.replace(/\s+/g, '-').toLowerCase()}.html'">
         ${rental.price}
         </button>
     </div>
