@@ -399,3 +399,20 @@ input, textarea {
   object-fit: cover;
   flex-shrink: 0;
 }
+
+.add-listing-container {
+  width: 400px; /* match your listing description box width */
+  margin: 0 auto 1.5rem; /* center horizontally and add bottom spacing */
+  text-align: center;
+}
+
+#add-listing-btn {
+  width: 100%; /* fills the container */
+  background-color: hsl(216, 100%, 50%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

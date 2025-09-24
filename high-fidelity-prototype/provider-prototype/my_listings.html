@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +9,7 @@
   <!-- Bootstrap Icons for the three dots -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
+
 <body>
   <nav class="navbar">
     <div class="container-fluid">
@@ -22,10 +24,12 @@
               <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
               <li><a class="dropdown-item" href="#">Favorites</a></li>
               <li><a class="dropdown-item" href="#">View My Listings</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_edit_listing.html">Create a Listing</a></li>
+              <li><a class="dropdown-item"
+                  href="/high-fidelity-prototype/provider-prototype/create_edit_listing.html">Create a Listing</a></li>
             </ul>
           </div>
         </li>
+
 
         <!-- Logo -->
         <li class="nav-item ms-3">
@@ -33,11 +37,13 @@
         </li>
       </ul>
 
+
       <!-- Profile dropdown -->
       <div class="ms-auto">
         <div class="dropdown">
           <button class="dropdown-toggle">
-            <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40" height="40" />
+            <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40"
+              height="40" />
           </button>
           <ul class="dropdown-menu-right">
             <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
@@ -48,6 +54,21 @@
       </div>
     </div>
   </nav>
-  <script src="/high-fidelity-prototype/scripting/script.js"></script>
+
+  <div style="width: 100%; text-align: center; margin: 3rem 0;">
+    <h1 style="font-size: 3rem; font-weight: bold;">My Listings</h1>
+  </div>
+
+<div class="add-listing-container">
+  <button id="add-listing-btn" onclick="window.location.href='/high-fidelity-prototype/provider-prototype/create_edit_listing.html'">
+    Add Listing
+  </button>
+</div>
+  
+  <!-- Carousel Container -->
+  <div id="carousel-container"></div>
+
+  <script src="/high-fidelity-prototype/scripting/my_listings.js"></script>
 </body>
+
 </html>
