@@ -64,7 +64,7 @@ function createCarousel(rental, index) {
             border-radius: 6px;
             cursor: pointer;
           "
-          onclick="window.location.href='/high-fidelity-prototype/provider-prototype/create_edit_listing.html'"
+          onclick="window.location.href='/high-fidelity-prototype/provider-prototype/edit_listing.html'"
         >
           Edit
         </button>
