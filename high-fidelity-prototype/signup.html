@@ -10,36 +10,55 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
-
-    <div class="card p-4 shadow" style="width: 900px;">
-        <h3 class="text-center mb-4">Login</h3>
-        <form>
-            <!--username input field-->
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Username/Email:</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="inputUsername">
+<body class="bg-light d-flex flex-column align-items-center" style="padding-top: 20px; min-height: 150vh;">
+    <a href="home.html">
+        <img src="images/Logo.jpg" style="width: 300px; margin-bottom: 150px;">
+    </a>
+    <div class="card shadow" style="width: 900px;">
+        <div class="card-header text-center" style="background-color: #88b6c8;">
+            <h3 class="mb-0 text-white"><strong>Sign up</strong></h3>
+        </div>
+        <div class="card-body p-4">
+            <form id="signup-form">
+                <!--username input field-->
+                <div class="mb-3 row">
+                    <label for="inputUsername" class="col-sm-2 col-form-label">Username/Email:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputUsername" required>
+                    </div>
                 </div>
-            </div>
-            <!--password input field-->
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
-                <div class="col-sm-3">
-                    <input type="password" value="FakePSW" id="myInput">
-                    <input type="checkbox" onclick="myFunction()">Show Password
+                
+                <!--password input field-->
+                <div class="mb-3 row align-items-center">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                    <div class="col-sm-4 d-flex align-items-center">
+                        <input type="password" id="inputPassword" class="form-control me-2" maxlength="26" required>
+                        <div class="form-check mb-0">
+                            <input type="checkbox" class="form-check-input" onclick="myFunction()" id="showPassword">
+                            <label class="form-check-label" for="showPassword">Show</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 row align-items-center">
+                    <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirm Password:</label>
+                    <div class="col-sm-3">
+                        <input type="password" id="confirmPassword" class="form-control" maxlength="19" required>
+                    </div>
                 </div>
 
-            </div>
-            <div class="mb-3 row"></div>
+                <div class="mt-4">
+                    <button type="submit" class="btn w-1" style="background-color: hsl(216, 100%, 50%); color: white;">
+                        Create Account
+                    </button>
+                </div>
 
-            <div class="mb-3 row">
-                Don't have an account? Sign up
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
+
     <script src="scripting/showPassword.js"></script>
+    <script src="scripting/login_signup_field_validation.js"></script>
 </body>
 
 </html>
