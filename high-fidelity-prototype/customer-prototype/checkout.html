@@ -53,6 +53,38 @@
             </div>
         </div>
     </nav>
+    <div class="checkout-container" style="display: flex; gap: 2rem; margin: 2rem;">
+        <!-- Booking Info -->
+        <div class="booking-box" style="flex: 1;">
+            <h2>Check-Out</h2>
+            <label>Check-in Date</label>
+            <input type="text" value="2025-10-25" readonly>
+
+            <label>Total Nights</label>
+            <input type="text" value="3" readonly>
+
+            <label>Price per Night</label>
+            <input type="text" value="$180" readonly>
+
+            <label>Taxes</label>
+            <input type="text" value="$37.8" readonly>
+
+            <label>Cleaning Fees</label>
+            <input type="text" value="$20" readonly>
+
+            <label>Total</label>
+            <input type="text" value="$597.8" readonly>
+
+            <button class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">Confirm
+                Booking</button>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-box" style="flex: 1;">
+            <div class="carousel" style="position: relative; overflow: hidden; height: 800px;">
+                <div class="slides" id="checkout-slides" style="display: flex; transition: transform 0.3s ease;">
+                    <img src="/high-fidelity-prototype/images/CozyCabins1.jpg" style="width:100%; object-fit:cover;">
+                </div>
     <script src="/high-fidelity-prototype/scripting/script.js"></script>
 </body>
 
