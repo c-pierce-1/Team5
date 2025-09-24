@@ -37,7 +37,7 @@ const slideIndices = {};
 function createCarousel(rental, index) {
   const slideId = `slides-${index}`;
   const slides = rental.images.map(img =>
-    `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
+    `<a href="/high-fidelity-prototype/customer-prototype/view_listing.html" class="slide" style="background-image: url('${img}')"></a>`
   ).join("");
 
   return `
@@ -54,9 +54,13 @@ function createCarousel(rental, index) {
         <h1>${rental.title}</h1>
         <p>${rental.location}</p>
         <p>${rental.description}</p>
-        <button class="price-button" onclick="window.location.href='/high-fidelity-prototype/customer-prototype/listing/${rental.title.replace(/\s+/g, '-').toLowerCase()}.html'">
-        ${rental.price}
-        </button>
+        <button 
+        class="price-button" 
+        onmouseover="this.innerHTML = 'Book Now'"
+        onmouseout="this.innerHTML = '${rental.price}'"
+        onclick="window.location.href='/high-fidelity-prototype/customer-prototype/checkout.html'">
+          ${rental.price}
+      </button>
     </div>
     </div>
   `;

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
 <body>
- <nav class="navbar">
+  <nav class="navbar">
     <div class="container-fluid">
       <ul class="navbar-nav flex-row align-items-center">
         <!-- Three dots dropdown -->
@@ -48,59 +48,13 @@
       </div>
     </div>
   </nav>
-    <div class="profile-container">
-    <!-- Header -->
-    <div class="profile-header">
-      <h1>Profile Page</h1>
-    </div>
 
-    <!-- Profile Image -->
-    <div class="profile-image">
-      <label for="upload">
-        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="avatar" />
-        <div class="camera-icon">📷</div>
-      </label>
-      <input type="file" id="upload" style="display: none;" />
-    </div>
+    <h1 style="text-align: center; margin-top: 2rem;">Favorite Listings</h1>
 
-    <!-- Info Fields -->
-    <div class="profile-info">
-      <div class="info-row" data-field="username">
-        <label>Username:</label>
-        <span class="value">SarahDev</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-      <div class="info-row">
-        <label>Phone:</label>
-        <span class="value">(555) 123-4567</span>
-         <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-      <div class="info-row">
-        <label>Name:</label>
-        <span class="value">Sarah Johnson</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-    </div>
+    <!-- Carousel Container -->
+    <div id="carousel-container"></div>
 
-    <!-- Stats -->
-    <div class="profile-stats">
-      <div class="stat-box">
-        <h3>Total Listings</h3>
-        <p>2</p>
-      </div>
-      <div class="stat-box">
-        <h3>Total Bookings</h3>
-        <p>0</p>
-      </div>
-    </div>
+    <script src="/high-fidelity-prototype/scripting/script.js"></script>
 
-  </div>
-  <script src="/high-fidelity-prototype/scripting/script.js"></script>
 </body>
 </html>

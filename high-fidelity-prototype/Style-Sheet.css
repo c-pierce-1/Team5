@@ -194,6 +194,13 @@ body {
 
 .price-button:hover {
   background-color: #e6c200;
+  font-size: 0; 
+}
+
+.price-button:hover::before {
+  content: 'Book Now';
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .search-container {
@@ -308,7 +315,6 @@ input[type="date"] {
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
 
