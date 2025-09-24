@@ -30,7 +30,7 @@ const slideIndices = {};
 function createCarousel(rental, index, size = "normal") {
     const slideId = `slides-${index}`;
     const slides = rental.images.map(img =>
-        `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
+        `<a href="/high-fidelity-prototype/customer-prototype/view_listing.html" class="slide" style="background-image: url('${img}')"></a>`
     ).join("");
 
     const cardClass = size === "large" ? "carousel-wrapper large-card" : "carousel-wrapper";
@@ -45,15 +45,6 @@ function createCarousel(rental, index, size = "normal") {
         </div>
       </div>
 
-      <div class="info-box" style="position: relative;">
-        <h1>${rental.title}</h1>
-        <p>${rental.location}</p>
-        <p>${rental.description}</p>
-        <button class="price-button" onclick="window.location.href='/high-fidelity-prototype/customer-prototype/listing/${rental.title.replace(/\s+/g, '-').toLowerCase()}.html'">
-          ${rental.price}
-        </button>
-      </div>
-    </div>
   `;
 }
 
