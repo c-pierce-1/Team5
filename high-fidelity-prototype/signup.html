@@ -16,17 +16,18 @@
     </a>
     <div class="card shadow" style="width: 900px;">
         <div class="card-header text-center" style="background-color: #88b6c8;">
-            <h3 class="mb-0 text-white">Login</h3>
+            <h3 class="mb-0 text-white"><strong>Sign up</strong></h3>
         </div>
         <div class="card-body p-4">
-            <form id="login-form">
+            <form id="signup-form">
                 <!--username input field-->
                 <div class="mb-3 row">
                     <label for="inputUsername" class="col-sm-2 col-form-label">Username/Email:</label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputUsername" class="form-control" required />
+                        <input type="text" class="form-control" id="inputUsername" required>
                     </div>
                 </div>
+                
                 <!--password input field-->
                 <div class="mb-3 row align-items-center">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
@@ -38,16 +39,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-4">
-                    <button type="submit" class="btn w-1"
-                        style="background-color: hsl(216, 100%, 50%); color: white;">
-                        Log in
-                    </button>
+                <div class="mb-3 row align-items-center">
+                    <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirm Password:</label>
+                    <div class="col-sm-3">
+                        <input type="password" id="confirmPassword" class="form-control" maxlength="19" required>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    Don't have an account?
-                    <a href="signup.html" class="ms-1">Sign up</a>
+                <div class="mt-4">
+                    <button type="submit" class="btn w-1" style="background-color: hsl(216, 100%, 50%); color: white;">
+                        Create Account
+                    </button>
                 </div>
 
             </form>
