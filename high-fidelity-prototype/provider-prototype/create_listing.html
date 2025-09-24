@@ -59,16 +59,19 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="images">Upload Images:</label>
-      <input type="file" id="images" name="images" accept="image/*" multiple />
+    <label for="images">Upload Images:</label>
+      <div class="image-upload-zone" id="upload-zone">
+        <i class="bi bi-images"></i>
+        <p>Drag & drop images here, or click to select</p>
+      </div>
+      <input type="file" id="images" name="images" accept="image/*" multiple style="display: none;" />
     </div>
-
   </div>
 
   <!-- Listing Form on the RIGHT -->
   <form id="listing-form" class="listing-form-container">
     <div class="form-header">
-      <h1>Create Listing</h1>
+      <h1>Create/Edit Listing</h1>
     </div>
 
     <div class="form-group">
@@ -105,8 +108,8 @@
     </div>
   </form>
 </div>
-</body>
-  <script src="/high-fidelity-prototype/scripting/listingLogic.js"></script>
-  <script src="/high-fidelity-prototype/scripting/createEdit.js"></script>
+
   <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+  <script src="/high-fidelity-prototype/scripting/createEdit.js"></script>
+</body>
 </html>
