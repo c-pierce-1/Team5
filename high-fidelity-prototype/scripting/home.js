@@ -1,16 +1,18 @@
-// Dropdown logic
-document.querySelectorAll('.dropdown-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const parent = button.closest('.dropdown');
-    parent.classList.toggle('open');
-  });
-});
+// Search logic (optional)
+function handleSearch() {
+  const query = document.getElementById('search-bar').value.toLowerCase();
+  const filtered = rentals.filter(rental =>
+    rental.title.toLowerCase().includes(query) ||
+    rental.location.toLowerCase().includes(query) ||
+    rental.description.toLowerCase().includes(query)
+  );
 
-window.addEventListener('click', (e) => {
-  if (!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
-  }
-});
+  const container = document.getElementById("carousel-container");
+  container.innerHTML = filtered.map((rental, i) => {
+    slideIndices[`slides-${i}`] = 0;
+    return createCarousel(rental, i);
+  }).join("");
+}
 
 // Rental data
 const rentals = [
@@ -37,46 +39,34 @@ const slideIndices = {};
 function createCarousel(rental, index) {
   const slideId = `slides-${index}`;
   const slides = rental.images.map(img =>
-    `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
+    `<a href="/high-fidelity-prototype/customer-prototype/view_listing.html" class="slide" style="background-image: url('${img}')"></a>`
   ).join("");
 
   return `
     <div class="carousel-wrapper">
-      <div class="carousel">
+    <div class="carousel">
         <div class="slides" id="${slideId}">${slides}</div>
         <div class="nav">
-          <button onclick="prevSlide('${slideId}')">❮</button>
-          <button onclick="nextSlide('${slideId}')">❯</button>
+        <button onclick="prevSlide('${slideId}')">❮</button>
+        <button onclick="nextSlide('${slideId}')">❯</button>
         </div>
-      </div>
+    </div>
 
-      <div class="info-box" style="position: relative;">
-        <button 
-          class="edit-btn" 
-          style="
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #88b6c8;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-          "
-          onclick="window.location.href='/high-fidelity-prototype/provider-prototype/create_edit_listing.html'"
-        >
-          Edit
-        </button>
-
+    <div class="info-box">
         <h1>${rental.title}</h1>
         <p>${rental.location}</p>
         <p>${rental.description}</p>
-      </div>
+        <button 
+        class="price-button" 
+        onmouseover="this.innerHTML = 'Book Now'"
+        onmouseout="this.innerHTML = '${rental.price}'"
+        onclick="window.location.href='/high-fidelity-prototype/customer-prototype/checkout.html'">
+          ${rental.price}
+      </button>
+    </div>
     </div>
   `;
 }
-
 // Render all carousels
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("carousel-container");
@@ -103,4 +93,3 @@ function prevSlide(id) {
   slideIndices[id] = (slideIndices[id] - 1 + total) % total;
   showSlide(id, slideIndices[id]);
 }
-
