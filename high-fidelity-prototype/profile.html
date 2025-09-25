@@ -20,9 +20,9 @@
             </button>
             <ul class="dropdown-menu-left">
               <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
-              <li><a class="dropdown-item" href="#">Favorites</a></li>
-              <li><a class="dropdown-item" href="#">View My Listings</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_edit_listing.html">Create a Listing</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a Listing</a></li>
             </ul>
           </div>
         </li>
@@ -58,9 +58,7 @@
     <div class="profile-image">
       <label for="upload">
         <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="avatar" />
-        <div class="camera-icon">📷</div>
       </label>
-      <input type="file" id="upload" style="display: none;" />
     </div>
 
     <!-- Info Fields -->
@@ -68,6 +66,13 @@
       <div class="info-row" data-field="username">
         <label>Username:</label>
         <span class="value">SarahDev</span>
+        <input type="text" class="edit-input" style="display: none;" />
+        <button class="edit-btn">Edit</button>
+        <button class="save-btn" style="display: none;">Save</button>
+        </div>
+       <div class="info-row">
+        <label>Name:</label>
+        <span class="value">Sarah Johnson</span>
         <input type="text" class="edit-input" style="display: none;" />
         <button class="edit-btn">Edit</button>
         <button class="save-btn" style="display: none;">Save</button>
@@ -80,9 +85,9 @@
         <button class="save-btn" style="display: none;">Save</button>
         </div>
       <div class="info-row">
-        <label>Name:</label>
-        <span class="value">Sarah Johnson</span>
-        <input type="text" class="edit-input" style="display: none;" />
+        <label>Email:</label>
+        <span class="value">sarah@example.com</span>
+         <input type="text" class="edit-input" style="display: none;" />
         <button class="edit-btn">Edit</button>
         <button class="save-btn" style="display: none;">Save</button>
         </div>
@@ -95,17 +100,13 @@
         <p>2</p>
       </div>
       <div class="stat-box">
-        <h3>Total Following</h3>
+        <h3>Total Bookings</h3>
         <p>0</p>
       </div>
     </div>
 
-    <!-- Edit Listings -->
-    <div class="edit-listings">
-      <h3>Edit Listings</h3>
-      <button class="edit-btn">Edit</button>
-    </div>
   </div>
-  <script src="/high-fidelity-prototype/scripting/script.js"></script>
+ <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+  <script src="/high-fidelity-prototype/scripting/profile.js"></script>
 </body>
 </html>

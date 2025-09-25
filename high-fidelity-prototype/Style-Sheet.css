@@ -1,4 +1,4 @@
-/* Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -31,6 +31,7 @@ body {
   display: flex;
   list-style: none;
   padding-left: 0;
+  position: relative;
 }
 
 /* Flex Row */
@@ -75,6 +76,7 @@ body {
   text-align: center;
   list-style: none;
   padding: 0;
+  border: 1px solid #000;
 }
 
 .dropdown-menu-left {
@@ -192,8 +194,28 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.checkout-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: hsl(216, 100%, 50%);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .price-button:hover {
   background-color: #e6c200;
+  font-size: 0; 
+}
+
+.price-button:hover::before {
+  content: 'Book Now';
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .search-container {
@@ -226,16 +248,17 @@ input[type="date"] {
 .profile-container {
   max-width: 1000px;
   margin: auto;
-  background: white;
+  background-color: #4c8ea8;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 10PX;
 }
 
 .profile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
 .header-icons i {
@@ -273,10 +296,20 @@ input[type="date"] {
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
+  color: white;
 }
 
 .edit-btn {
-  background-color: #88b6c8;
+  background-color: hsl(216, 100%, 50%);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: hsl(216, 100%, 50%);
   color: white;
   border: none;
   padding: 0.4rem 1rem;
@@ -305,26 +338,26 @@ input[type="date"] {
 
 .listing-form-container {
   margin: auto;
-  background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
+  background-color: #4c8ea8;
 }
 
-.form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.listing-form {
+  margin: auto;
+  background-color: #4c8ea8;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 10px;
 }
+
 
 .lock-icon {
   font-size: 1.5rem;
   color: #888;
-}
-
-.form-group {
-  margin: 1rem 0;
 }
 
 label {
@@ -362,8 +395,8 @@ textarea {
   margin-top: 2rem;
 }
 
-#submit-btn {
-  background-color: #ffd700;
+#submit-btn, .clear-btn {
+  background-color: hsl(216, 100%, 50%);
   color: black;
   border: none;
   padding: 0.7rem 1.5rem;
@@ -371,6 +404,7 @@ textarea {
   font-weight: bold;
   cursor: pointer;
 }
+
 
 .form-and-carousel {
   display: flex;
@@ -380,6 +414,15 @@ textarea {
 
 .image-carousel {
   width: 800px;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-carousel-view {
+  width: 1000px;
   height: 600px;
   overflow: hidden;
   position: relative;
@@ -468,4 +511,243 @@ textarea {
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
+}
+
+.image-upload-zone {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #aaa;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.image-upload-zone:hover {
+  background-color: #f9f9f9;
+  border-color: #4c8ea8;
+}
+
+/* Style for when a file is being dragged over the zone */
+.image-upload-zone.dragover {
+  background-color: #eef8ff;
+  border-color: #007bff;
+}
+
+.image-upload-zone i {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Container for each slide needs to be relative for positioning */
+.slide {
+  position: relative;
+}
+
+.delete-image-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.delete-image-btn:hover {
+  background-color: rgba(220, 53, 69, 0.8); /* Red on hover */
+}
+
+.date-inputs {
+    display: flex;
+    gap: 20px; /* Adds space between the two date pickers */
+    align-items: center;
+    color: white;
+}
+
+.date-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-details{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: white;
+}
+.form-header{
+    margin-bottom: 20px;
+     margin-top: 20px;
+    color: white;
+}
+
+.details-and-carousel {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the Comments Section */
+.comments-section {
+    width: 80%; /* Adjust width to match your main content if needed */
+    max-width: 900px;
+    margin: 40px auto; /* Centers the section and adds vertical space */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background to make it stand out */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comments-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.add-comment-form,
+.comments-list {
+    margin-top: 30px;
+}
+
+.add-comment-heading,
+.comments-list h3 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    color: white;
+}
+
+.price-section {
+    margin-top: 20px;
+    color: white;
+    font: optional;
+}
+.rules-section {
+    margin-top: 20px;
+    color: white;
+  }
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+}
+
+.submit-comment-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-comment-button:hover {
+    background-color: #0056b3;
+}
+
+.comment {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-text {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Styling for reply comments */
+.comment.reply {
+    margin-top: 10px;
+    margin-left: 50px; /* Indents the reply comment */
+    border: 1px solid #ddd; /* Light border to visually separate it */
+    background-color: #f0f2f5; /* Slightly different background color */
+}
+
+/* Style for the reply button */
+.reply-button {
+   background-color: #ffd700;
+  color: black;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.reply-button:hover {
+    text-decoration: underline;
+}
+
+
+.form-header {
+    display: flex;
+    align-items: center;
+}
+/* Favorite Icon Button */
+.favorite-icon-btn {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #e74c3c;
+    margin-left: 5px;
+    transition: color 0.2s ease-in-out;
+}
+
+
+.favorite-icon-btn:hover {
+    color: #e74c3c;
+}
+
+.search-container button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: -30px;
+}
+
+.search-container button i {
+    color: #555;
+    font-size: 1.2rem;
 }

@@ -1,17 +1,3 @@
-// Dropdown logic
-document.querySelectorAll('.dropdown-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const parent = button.closest('.dropdown');
-    parent.classList.toggle('open');
-  });
-});
-
-window.addEventListener('click', (e) => {
-  if (!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
-  }
-});
-
 // Rental data
 const rentals = [
   {
@@ -37,7 +23,7 @@ const slideIndices = {};
 function createCarousel(rental, index) {
   const slideId = `slides-${index}`;
   const slides = rental.images.map(img =>
-    `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
+    `<a href="/high-fidelity-prototype/customer-prototype/view_listing.html" class="slide" style="background-image: url('${img}')"></a>`
   ).join("");
 
   return `
@@ -54,9 +40,13 @@ function createCarousel(rental, index) {
         <h1>${rental.title}</h1>
         <p>${rental.location}</p>
         <p>${rental.description}</p>
-        <button class="price-button" onclick="window.location.href='/high-fidelity-prototype/customer-prototype/listing/${rental.title.replace(/\s+/g, '-').toLowerCase()}.html'">
-        ${rental.price}
-        </button>
+        <button 
+        class="price-button" 
+        onmouseover="this.innerHTML = 'Book Now'"
+        onmouseout="this.innerHTML = '${rental.price}'"
+        onclick="window.location.href='/high-fidelity-prototype/customer-prototype/checkout.html'">
+          ${rental.price}
+      </button>
     </div>
     </div>
   `;
@@ -87,42 +77,3 @@ function prevSlide(id) {
   slideIndices[id] = (slideIndices[id] - 1 + total) % total;
   showSlide(id, slideIndices[id]);
 }
-
-// Search logic (optional)
-function handleSearch() {
-  const query = document.getElementById('search-bar').value.toLowerCase();
-  const filtered = rentals.filter(rental =>
-    rental.title.toLowerCase().includes(query) ||
-    rental.location.toLowerCase().includes(query) ||
-    rental.description.toLowerCase().includes(query)
-  );
-
-  const container = document.getElementById("carousel-container");
-  container.innerHTML = filtered.map((rental, i) => {
-    slideIndices[`slides-${i}`] = 0;
-    return createCarousel(rental, i);
-  }).join("");
-}
-
-document.querySelectorAll('.info-row').forEach(row => {
-  const editBtn = row.querySelector('.edit-btn');
-  const saveBtn = row.querySelector('.save-btn');
-  const span = row.querySelector('.value');
-  const input = row.querySelector('.edit-input');
-
-  editBtn.addEventListener('click', () => {
-    input.value = span.textContent;
-    span.style.display = 'none';
-    input.style.display = 'inline-block';
-    editBtn.style.display = 'none';
-    saveBtn.style.display = 'inline-block';
-  });
-
-  saveBtn.addEventListener('click', () => {
-    span.textContent = input.value;
-    span.style.display = 'inline-block';
-    input.style.display = 'none';
-    editBtn.style.display = 'inline-block';
-    saveBtn.style.display = 'none';
-  });
-});

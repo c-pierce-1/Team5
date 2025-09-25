@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Screen</title>
+  <title>Create Listing</title>
   <link rel="stylesheet" href="/high-fidelity-prototype/Style-Sheet.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
 <body>
-  <nav class="navbar">
+  <!-- Navigation Bar -->
+   <nav class="navbar">
     <div class="container-fluid">
       <ul class="navbar-nav flex-row align-items-center">
         <!-- Three dots dropdown -->
@@ -47,21 +48,68 @@
       </div>
     </div>
   </nav>
-  <!-- Logo Section -->
-<div class="logo-container">
-  <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Getaways Now Logo" class="logo" />
+  <div class="form-and-carousel">
+  <!-- Image Upload + Carousel on the LEFT -->
+  <div class="image-section" style="padding: 20px;">
+    <div class="image-carousel">
+      <div class="slides-listing" id="preview-slides"></div>
+      <div class="nav">
+        <button onclick="prevPreviewSlide()">❮</button>
+        <button onclick="nextPreviewSlide()">❯</button>
+      </div>
+    </div>
+    <div class="form-group">
+    <label for="images">Upload Images:</label>
+      <div class="image-upload-zone" id="upload-zone">
+        <i class="bi bi-images"></i>
+        <p>Drag & drop images here, or click to select</p>
+      </div>
+      <input type="file" id="images" name="images" accept="image/*" multiple style="display: none;" />
+    </div>
+  </div>
+
+  <!-- Listing Form on the RIGHT -->
+  <form id="listing-form" class="listing-form-container">
+    <div class="form-header">
+      <h1>Create Listing</h1>
+    </div>
+
+    <div class="form-group" style="color: white;">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter listing name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter address" required />
+    </div>
+
+    <div class="form-group">
+      <label for="desc">Description:</label>
+      <textarea id="desc" name="desc" placeholder="Enter description" rows="4" required></textarea>
+    </div>
+
+    <div class="price-section">
+      <h3>Price Per Night</h3>
+      <input type="number" id="Price" name="price" placeholder="Enter Price Per night" required />
+    </div>
+
+
+    <div class="rules-section">
+      <h3>Rules</h3>
+      <textarea id="rules" name="rules" placeholder="Enter rules or guidelines" rows="5"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" id="submit-btn">Save Listing</button>
+      <button type="reset" class="clear-btn" title="Clear form">
+    <i class="bi bi-trash"></i>
+  </button>
+    </div>
+  </form>
 </div>
 
-<!-- Search Bar -->
-<div class="search-container">
-  <input type="text" placeholder="Search rentals..." id="search-bar" />
-    <button onclick="handleSearch()">
-    <i class="bi bi-search"></i>
-    
-</div>
-    <!-- Carousel Container -->
-    <div id="carousel-container"></div>
-</body>
   <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
-  <script src="/high-fidelity-prototype/scripting/home.js"></script>
+  <script src="/high-fidelity-prototype/scripting/createEdit.js"></script>
+</body>
 </html>

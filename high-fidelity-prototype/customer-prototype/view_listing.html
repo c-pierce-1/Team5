@@ -1,61 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>View Listing</title>
-  <link rel="stylesheet" href="/high-fidelity-prototype/Style-Sheet.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    #carousel-container {
-      max-width: 1000px;
-      margin: 3rem auto;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Listing</title>
+    <link rel="stylesheet" href="/high-fidelity-prototype/Style-Sheet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container-fluid">
-      <ul class="navbar-nav flex-row align-items-center">
-        <li class="nav-item">
-          <div class="dropdown">
-            <button class="dropdown-toggle">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>
-            <ul class="dropdown-menu-left">
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
-              <li><a class="dropdown-item" href="#">Favorites</a></li>
-              <li><a class="dropdown-item" href="#">View My Listings</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_edit_listing.html">Create a Listing</a></li>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <ul class="navbar-nav flex-row align-items-center">
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu-left">
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a Listing</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
+                </li>
             </ul>
-          </div>
-        </li>
-        <li class="nav-item ms-3">
-          <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
-        </li>
-      </ul>
-      <div class="ms-auto">
-        <div class="dropdown">
-          <button class="dropdown-toggle">
-            <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40" height="40" />
-          </button>
-          <ul class="dropdown-menu-right">
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/logout.html">Logout</a></li>
-          </ul>
+
+            <div class="ms-auto">
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40" height="40" />
+                    </button>
+                    <ul class="dropdown-menu-right">
+                        <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+    </nav>
+    <div class="details-and-carousel">
+        <div class="image-section" style="padding: 20px;">
+            <div class="image-carousel-view">
+                <div class="slides-listing" id="preview-slides"></div>
+                <div class="nav">
+                    <button onclick="prevPreviewSlide()">❮</button>
+                    <button onclick="nextPreviewSlide()">❯</button>
+                </div>
+            </div>
+        </div>
+
+        <form class="listing-form" action="#" method="POST">
+    <div class="form-header">
+        <h1 id="name-label">Cozy Cabin</h1>
+        <span id="favorite-icon" class="favorite-icon-btn bi bi-heart"></span>
     </div>
-  </nav>
+    <div class="form-details">
+        <h2 for="address">Location</h2>
+        <span id="address-label" class="form-label"></span>
+    </div>
 
-  <div id="carousel-container"></div>
+    <div class="form-details">
+        <h2 for="desc">Description</h2>
+        <span id="desc-label" class="form-label"></span>
+    </div>
 
-  <script src="/high-fidelity-prototype/scripting/view_listing.js"></script>
+    <div class="form-details">
+        <h2 for="price">Price Per Night</h2>
+        <span id="price-label" class="form-label"></span>
+    </div>
+
+    <div class="form-details">
+        <h2 for="rules">Rules</h2>
+        <span id="rules-label" class="form-label"></span>
+    </div>
+
+    <div class="form-section date-inputs">
+        <div class="date-group">
+            <label for="check-in">Check-in:</label>
+            <input type="date" id="check-in" name="check-in">
+        </div>
+        <div class="date-group">
+            <label for="check-out">Check-out:</label>
+            <input type="date" id="check-out" name="check-out">
+        </div>
+    </div>
+
+     <button class="checkout-button">
+      <a style="color: inherit; text-decoration: none;" href="/high-fidelity-prototype/customer-prototype/checkout.html">Book Now</a>
+      </button>
+</form>
+</div>
+   <div class="comments-section">
+    <h2>Reviews</h2>
+    
+    <div class="add-comment-form">
+        <h3 class="add-comment-heading">Leave a comment</h3>
+        <form>
+            <div class="form-group">
+                <label for="comment-author" style="color: black;">Your Name</label>
+                <input type="text" id="comment-author" name="comment-author" required>
+            </div>
+            <div class="form-group">
+                <label for="comment-text" style="color: black;">Your Comment</label>
+                <textarea id="comment-text" name="comment-text" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-comment-button">Submit Comment</button>
+        </form>
+    </div>
+
+    <div class="comments-list">
+        <h3>User Comments</h3>
+        <div class="comment">
+            <div class="comment-header">
+                <span class="comment-author">John Doe</span>
+                <span class="comment-date">September 24, 2025</span>
+            </div>
+            <p class="comment-text">This place was amazing! The cabin was cozy and the view was incredible. I would definitely stay here again.</p>
+            <button class="reply-button">Reply</button>
+            
+            <div class="replies">
+                <div class="comment reply">
+                    <div class="comment-header">
+                        <span class="comment-author">Cabin Owner</span>
+                        <span class="comment-date">September 25, 2025</span>
+                    </div>
+                    <p class="comment-text">Thank you, John! We're so glad you enjoyed your stay. Hope to see you again soon!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comment">
+            <div class="comment-header">
+                <span class="comment-author">Jane Smith</span>
+                <span class="comment-date">September 20, 2025</span>
+            </div>
+            <p class="comment-text">A great experience overall! Very clean and quiet. Perfect for a weekend getaway.</p>
+            <button class="reply-button">Reply</button>
+
+            <div class="replies">
+                <div class="comment reply">
+                    <div class="comment-header">
+                        <span class="comment-author">Cabin Owner</span>
+                        <span class="comment-date">September 21, 2025</span>
+                    </div>
+                    <p class="comment-text">Thank you, John! We're so glad you enjoyed your stay. Hope to see you again soon!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
+    <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+    <script src="/high-fidelity-prototype/scripting/view_listing.js"></script>
 </html>
