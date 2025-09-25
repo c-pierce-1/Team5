@@ -1,16 +1,4 @@
-// Dropdown logic
-document.querySelectorAll('.dropdown-toggle').forEach(button => {
-  button.addEventListener('click', () => {
-    const parent = button.closest('.dropdown');
-    parent.classList.toggle('open');
-  });
-});
 
-window.addEventListener('click', (e) => {
-  if (!e.target.closest('.dropdown')) {
-    document.querySelectorAll('.dropdown').forEach(drop => drop.classList.remove('open'));
-  }
-});
 
 // Rental data
 const rentals = [
@@ -37,7 +25,7 @@ const slideIndices = {};
 function createCarousel(rental, index) {
   const slideId = `slides-${index}`;
   const slides = rental.images.map(img =>
-    `<a href="/high-fidelity-prototype/customer-prototype/listing.html" class="slide" style="background-image: url('${img}')"></a>`
+    `<a href="/high-fidelity-prototype/customer-prototype/view_listing.html" class="slide" style="background-image: url('${img}')"></a>`
   ).join("");
 
   return `
