@@ -1,7 +1,7 @@
 # LocalHarvest Hub - Software Design 
 
 Version 1  
-Prepared by Alice Beback\
+Prepared by Charles Pierce and Sarah Parisi
 LocalHarvest Hub\
 Oct 8, 2025
 
