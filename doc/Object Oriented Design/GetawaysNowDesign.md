@@ -34,17 +34,22 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 
 ### 2.2 Use Case Descriptions
 
-#### 2.2.1 Actor: Farmer
+#### 2.2.1 Actor: Provider
 ##### 2.2.1.1 Sign Up
-A farmer can sign up to create their profile with their name, email, password, and phone number. Emails must be unique.
+A provider can sign up to create their profile with their name, email, password, and phone number. Emails must be unique.
 ##### 2.2.1.2 Log In
-A farmer shall be able to sign in using their registred email and password. After logging in, the farmer shall be directed their dashboard where they see an overview of their farm, boxes and stats.
+A provider shall be able to sign in using their registred email and password. After logging in, the provider will be directed to the websites home page.
 ##### 2.2.1.3 Update Profile
-A farmer shall be to modify their profile by going to their profile page. They can change their email, password, and farm.
-##### 2.2.1.4 Create Produce Boxes
-The farmer shall be able to create a new produce box listing. They would provide a box name, description, and price. This box will be created to be associated with only this farmer and their farm.
-##### 2.2.1.4 View Customer Stats
-A farmer will be able to view several statistics such as total revenue, total subscribers, and average ratings.
+A provider can modify their profile by updating phone number, email, and name.
+##### 2.2.1.4 Create Listings
+The provider will be able to create new listings. This includes adding images, a listing name, decription, address, rules and a price per night. This listing is only associated with one provider.
+##### 2.2.1.5 Edit Listings 
+Providers can update their listings, prices, name, description, and images
+##### 2.2.1.6 Reply To Reviews
+Providers can reply to customer reviews on their listings
+##### 2.2.1.7 Compare to other Listings
+Providers have the ability to search listings where they can then compare their listings to their competitors.
+
 
 #### 2.2.2 Actor: Customer
 ##### 2.2.2.1 Sign Up
