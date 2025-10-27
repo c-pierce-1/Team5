@@ -70,6 +70,23 @@ public class ListingController {
 
   }
   
+ /**
+   * Endpoint to get Listings by profile
+   *
+   * @param profile The profile of the Listing to search for
+   * @return List of Listings with the specified profile
+   */
+  @GetMapping("/Listings/search/profile/{profile}")
+  public Object getListingsByProfile(@RequestParam Long profile) {
+    if (profile != null) {
+      return ListingService.getListingsByProfile(profile);
+    } else {
+      return ListingService.getAllListings();
+    }
+
+  }
+
+
     /**
    * Endpoint to add a new Listing
    *

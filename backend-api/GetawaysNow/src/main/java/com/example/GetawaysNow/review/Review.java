@@ -1,6 +1,6 @@
 package com.example.GetawaysNow.review;
 
-
+import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.listing.Listing;
 
 import jakarta.persistence.Column;
@@ -25,9 +25,9 @@ public class Review {
     @JoinColumn(name = "listing_id", nullable = false)
     private Listing listing; 
 
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "profile_id", nullable = false)
-    // private Profile profile; 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id", nullable = false)
+    private Profile profile; 
 
     @Column(length=500) 
     private String comment;
@@ -36,14 +36,58 @@ public class Review {
     @JoinColumn(name = "parent_id")
     private Review parentReview;
 
-    public Review(Long id, Listing listing){
+    public Review(Long id, Listing listing, Profile profile){
         this.id = id;
+        this.listing = listing;
+        this.profile = profile;
+    }
+
+    public Review(Long id, Listing listing,  Profile profile, Review parentReview){
+        this.id = id;
+        this.listing = listing;
+        this.profile = profile;
+        this.parentReview = parentReview;
+    }
+
+    // --- Getters and Setters ---
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
         this.listing = listing;
     }
 
-    public Review(Long id, Listing listing, Review parentReview){
-        this.id = id;
-        this.listing = listing;
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Review getParentReview() {
+        return parentReview;
+    }
+
+    public void setParentReview(Review parentReview) {
         this.parentReview = parentReview;
     }
 }

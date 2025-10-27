@@ -67,6 +67,16 @@ public class ListingService {
     return ListingRepository.getListingsByCity(city);
   }
 
+   /**
+   * Method to get Listings by profile
+   *
+   * @param profile The profile of the Listing to search for
+   * @return List of Listings with the specified profile
+   */
+  public Object getListingsByProfile(Long profile) {
+    return ListingRepository.getListingsByProfile(profile);
+  }
+
 
 
   /**
