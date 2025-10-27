@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Long> {
 
-    @Query(value = "select * from listing s where s.name like %?1% ", nativeQuery = true)
+    @Query(value = "select * from listing s where s.name like '%' || ?1 || '%' ", nativeQuery = true)
     List<Listing> getListingsByName(String name);
 
-    @Query(value = "select * from listing s where s.address like %?1% ", nativeQuery = true)
+    @Query(value = "select * from listing s where s.address like '%' || ?1 || '%' ", nativeQuery = true)
     List<Listing> getListingsByAddress(String address);
 
-    @Query(value = "select * from listing s where s.city like %?1% ", nativeQuery = true)
+    @Query(value = "select * from listing s where s.city like '%' || ?1 || '%' ", nativeQuery = true)
     List<Listing> getListingsByCity(String city);
     
 }

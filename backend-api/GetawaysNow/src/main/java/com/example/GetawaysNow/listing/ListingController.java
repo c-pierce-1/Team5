@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ListingController {
     @Autowired
   private ListingService ListingService;
-  private ListingController ListingController;
 
   /**
    * Endpoint to get all Listings
@@ -45,7 +44,7 @@ public class ListingController {
    * @param address The address of the Listing to search for
    * @return List of Listings with the specified address
    */
-  @GetMapping("/Listings/search")
+  @GetMapping("/Listings/search/address/{address}")
   public Object getListingsByAddress(@RequestParam String address) {
     if (address != null) {
       return ListingService.getListingsByAddress(address);
@@ -61,7 +60,7 @@ public class ListingController {
    * @param city The city of the Listing to search for
    * @return List of Listings with the specified city
    */
-  @GetMapping("/Listings/search")
+  @GetMapping("/Listings/search/city/{city}")
   public Object getListingsByCity(@RequestParam String city) {
     if (city != null) {
       return ListingService.getListingsByCity(city);
