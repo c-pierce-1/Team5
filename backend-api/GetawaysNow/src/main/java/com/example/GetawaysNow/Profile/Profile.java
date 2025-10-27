@@ -1,5 +1,7 @@
 package com.example.getawaysnow.profile;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ public class Profile {
     @Column(name = "ID")
     private Long profileId;
 
+    @NotBlank
     @Column(name = "Username", nullable = false)
     private String username;
 
@@ -28,6 +31,7 @@ public class Profile {
     @Column(name = "Password", nullable = false)
     private String password;
 
+    @Email
     @Column(name = "Email")
     private String email;
 
