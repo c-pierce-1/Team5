@@ -71,12 +71,12 @@ public class ListingController {
   }
   
  /**
-   * Endpoint to get Listings by city
+   * Endpoint to get Listings by profile
    *
-   * @param city The city of the Listing to search for
-   * @return List of Listings with the specified city
+   * @param profile The profile of the Listing to search for
+   * @return List of Listings with the specified profile
    */
-  @GetMapping("/Listings/search/city/{city}")
+  @GetMapping("/Listings/search/profile/{profile}")
   public Object getListingsByProfile(@RequestParam Long profile) {
     if (profile != null) {
       return ListingService.getListingsByProfile(profile);
