@@ -15,7 +15,7 @@ public class ListingImages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "listing_id", nullable = false)
@@ -30,5 +30,4 @@ public class ListingImages {
         this.imagePath= imagePath;
     }
 
-    
 }
