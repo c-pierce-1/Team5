@@ -27,7 +27,7 @@ public class Booking {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ListingID")
     private Listing listing;
 
