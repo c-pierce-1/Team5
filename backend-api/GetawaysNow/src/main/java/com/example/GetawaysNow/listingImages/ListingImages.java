@@ -18,7 +18,7 @@ public class ListingImages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "listing_id", nullable = false)
@@ -27,11 +27,14 @@ public class ListingImages {
     @Column(nullable = false)
     private String imagePath;
 
+    public ListingImages() {
+
+    }
+
     public ListingImages(Long id, Listing listing, String imagePath) {
         this.id = id;
         this.listing = listing;
-        this.imagePath= imagePath;
+        this.imagePath = imagePath;
     }
 
-    
 }
