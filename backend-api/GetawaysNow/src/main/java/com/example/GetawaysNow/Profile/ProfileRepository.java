@@ -1,4 +1,4 @@
-package com.example.getawaysnow.profile;
+package com.example.GetawaysNow.profile;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

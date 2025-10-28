@@ -1,4 +1,4 @@
-package com.example.getawaysnow.profile;
+package com.example.GetawaysNow.profile;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

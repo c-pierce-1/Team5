@@ -1,4 +1,4 @@
-package com.example.getawaysnow.profile;
+package com.example.GetawaysNow.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.persistence.EntityNotFoundException;

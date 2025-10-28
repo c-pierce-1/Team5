@@ -1,6 +1,6 @@
 package com.example.GetawaysNow.review;
 
-import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.profile.Profile;
 import com.example.GetawaysNow.listing.Listing;
 
 import jakarta.persistence.Column;
@@ -35,6 +35,10 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Review parentReview;
+
+    public Review(){
+        
+    }
 
     public Review(Long id, Listing listing, Profile profile){
         this.id = id;
