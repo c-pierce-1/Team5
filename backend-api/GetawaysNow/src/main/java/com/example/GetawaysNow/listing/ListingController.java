@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -45,29 +44,20 @@ public class ListingController {
    * @return List of Listings with the specified address
    */
   @GetMapping("/Listings/address/{address}")
-  public Object getListingsByAddress(@RequestParam String address) {
-    if (address != null) {
-      return ListingService.getListingsByAddress(address);
-    } else {
-      return ListingService.getAllListings();
-    }
-
+  public Object getListingsByAddress(@PathVariable String address) {
+    return ListingService.getListingsByAddress(address);
   }
 
-   /**
+
+  /**
    * Endpoint to get Listings by city
    *
    * @param city The city of the Listing to search for
    * @return List of Listings with the specified city
    */
-  @GetMapping("/Listings/search/city/{city}")
-  public Object getListingsByCity(@RequestParam String city) {
-    if (city != null) {
-      return ListingService.getListingsByCity(city);
-    } else {
-      return ListingService.getAllListings();
-    }
-
+  @GetMapping("/Listings/city/{city}")
+  public Object getListingsByCity(@PathVariable String city) {
+    return ListingService.getListingsByCity(city);
   }
   
  /**
@@ -76,14 +66,9 @@ public class ListingController {
    * @param profile The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
-  @GetMapping("/Listings/search/profile/{profile}")
-  public Object getListingsByProfile(@RequestParam Long profile) {
-    if (profile != null) {
-      return ListingService.getListingsByProfile(profile);
-    } else {
-      return ListingService.getAllListings();
-    }
-
+  @GetMapping("/Listings/profile/{profile}")
+  public Object getListingsByProfile(@PathVariable Long profileID) {
+    return ListingService.getListingsByProfile(profileID);
   }
 
 

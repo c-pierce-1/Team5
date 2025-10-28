@@ -70,11 +70,11 @@ public class ListingService {
    /**
    * Method to get Listings by profile
    *
-   * @param profile The profile of the Listing to search for
+   * @param profileID The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
-  public Object getListingsByProfile(Long profile) {
-    return ListingRepository.getListingsByProfile(profile);
+  public Object getListingsByProfile(Long profileID) {
+    return ListingRepository.getListingsByProfile(profileID);
   }
 
 
