@@ -22,26 +22,29 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "listing_id", nullable = false)
-    private Listing listingID; 
+    private Listing listingID;
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
-    private Profile profileID; 
+    private Profile profileID;
 
-    @Column(length=500) 
+    @Column(length = 500)
     private String comment;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Review parentReview;
 
-    public Review(Long id, Listing listingID, Profile profileID){
+    // ✅ Default constructor required by JPA and Jackson
+    public Review() {}
+
+    public Review(Long id, Listing listingID, Profile profileID) {
         this.id = id;
         this.listingID = listingID;
         this.profileID = profileID;
     }
 
-    public Review(Long id, Listing listingID,  Profile profileID, Review parentReview){
+    public Review(Long id, Listing listingID, Profile profileID, Review parentReview) {
         this.id = id;
         this.listingID = listingID;
         this.profileID = profileID;
@@ -49,45 +52,20 @@ public class Review {
     }
 
     // --- Getters and Setters ---
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public Listing getListing() { return listingID; }
+    public void setListing(Listing listingID) { this.listingID = listingID; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Profile getProfile() { return profileID; }
+    public void setProfile(Profile profileID) { this.profileID = profileID; }
 
-    public Listing getListing() {
-        return listingID;
-    }
+    public String getComment() { return comment; }
+    public void setComment(String comment) { this.comment = comment; }
 
-    public void setListing(Listing listingID) {
-        this.listingID = listingID;
-    }
-
-    public Profile getProfile() {
-        return profileID;
-    }
-
-    public void setProfile(Profile profileID) {
-        this.profileID = profileID;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Review getParentReview() {
-        return parentReview;
-    }
-
-    public void setParentReview(Review parentReview) {
-        this.parentReview = parentReview;
-    }
+    public Review getParentReview() { return parentReview; }
+    public void setParentReview(Review parentReview) { this.parentReview = parentReview; }
 }
+
 
