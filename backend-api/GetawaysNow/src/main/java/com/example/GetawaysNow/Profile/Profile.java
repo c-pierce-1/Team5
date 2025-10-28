@@ -1,5 +1,8 @@
 package com.example.GetawaysNow.profile;
 
+import com.example.getawaysnow.favorite.Favorite;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.Column;
@@ -8,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -18,6 +23,10 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long profileId;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Favorite> favorites = new ArrayList<>();
 
     @NotBlank
     @Column(name = "Username", nullable = false)
@@ -116,6 +125,14 @@ public class Profile {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public List<Favorite> getFavorites(){
+        return favorites;
+    }
+
+    public void setFavorites(List<Favorite> favorites){
+        this.favorites = favorites;
     }
 
 }
