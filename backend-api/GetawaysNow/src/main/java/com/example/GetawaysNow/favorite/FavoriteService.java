@@ -44,7 +44,7 @@ public class FavoriteService {
         if (!profileRepository.existsById(profileId)) {
             throw new EntityNotFoundException("Profile not found");
         }
-        return favoriteRepository.findByProfileId(profileId);
+        return favoriteRepository.findByProfileProfileId(profileId);
     }
 
     public void deleteFavorite(Long favoriteId) {

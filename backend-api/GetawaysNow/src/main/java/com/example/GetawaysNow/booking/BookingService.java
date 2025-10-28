@@ -57,7 +57,7 @@ public class BookingService {
     }
 
     public List<Booking> getBookingsByProfileId(Long profileId) {
-        return bookingRepository.findByProfileId(profileId);
+        return bookingRepository.findByProfileProfileId(profileId);
     }
 
     public Booking updateBooking(Long id, Booking bookingDetails) {
