@@ -1,5 +1,10 @@
 package com.example.getawaysnow.booking;
 
+import com.example.GetawaysNow.profile.Profile;
+import com.example.GetawaysNow.profile.ProfileRepository;
+import com.example.GetawaysNow.listing.Listing;
+import com.example.GetawaysNow.listing.ListingRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -9,21 +14,37 @@ import java.util.List;
 
 @Service
 @Transactional
-
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+    private final ProfileRepository profileRepository;
+    private final ListingRepository listingRepository;
 
     @Autowired
-    public BookingService(BookingRepository bookingRepository) {
+    public BookingService(BookingRepository bookingRepository, ProfileRepository profileRepository, ListingRepository listingRepository) {
         this.bookingRepository = bookingRepository;
+        this.profileRepository = profileRepository;
+        this.listingRepository = listingRepository;
     }
 
-    public Booking createBooking(Booking booking) {
-        if (booking.getStartDate().isAfter(booking.getEndDate())) {
+    public Booking createBooking(Long profileId, Long listingId, Booking bookingDetails) {
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new EntityNotFoundException("Profile not found"));
+
+        Listing listing = listingRepository.findById(listingId)
+                .orElseThrow(() -> new EntityNotFoundException("Listing not found"));
+
+        if (bookingDetails.getStartDate().isAfter(bookingDetails.getEndDate())) {
             throw new IllegalStateException("Start date must be before end date");
         }
-        return bookingRepository.save(booking);
+        Booking newBooking = new Booking();
+        newBooking.setProfile(profile);
+        newBooking.setListing(listing);
+        newBooking.setStartDate(bookingDetails.getStartDate());
+        newBooking.setEndDate(bookingDetails.getEndDate());
+        newBooking.setTotalPrice(bookingDetails.getTotalPrice());
+
+        return bookingRepository.save(newBooking);
     }
 
     public List<Booking> getAllBookings() {

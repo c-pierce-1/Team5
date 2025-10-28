@@ -1,17 +1,20 @@
 package com.example.getawaysnow.booking;
 
+import com.example.GetawaysNow.profile.Profile;
+import com.example.GetawaysNow.listing.Listing;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-//import jakarta.validation.constraints.Future;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-//import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "Bookings")
@@ -22,13 +25,14 @@ public class Booking {
     @Column(name = "ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "ListingID")
-    private Long listingId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ListingID")
+    private Listing listing;
 
-    @NotNull
-    @Column(name = "ProfileID")
-    private Long profileId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ProfileID")
+    @JsonIgnore
+    private Profile profile;
 
     @NotNull
     @Column(name = "StartDate")
@@ -46,9 +50,9 @@ public class Booking {
 
     }
 
-    public Booking(Long listingId, Long profileId, LocalDate startDate, LocalDate endDate, BigDecimal totalPrice) {
-        this.listingId = listingId;
-        this.profileId = profileId;
+    public Booking(Profile profile, Listing listing, LocalDate startDate, LocalDate endDate, BigDecimal totalPrice) {
+        this.profile = profile;
+        this.listing = listing;
         this.startDate = startDate;
         this.endDate = endDate;
         this.totalPrice = totalPrice;
@@ -62,20 +66,20 @@ public class Booking {
         this.id = id;
     }
 
-    public Long getListingId() {
-        return listingId;
+    public Listing getListing() {
+        return listing;
     }
 
-    public void setListingId(Long listingId) {
-        this.listingId = listingId;
+    public void setListing(Listing listing) {
+        this.listing = listing;
     }
 
-    public Long getProfileId() {
-        return profileId;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setProfileId(Long profileId) {
-        this.profileId = profileId;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public LocalDate getStartDate() {

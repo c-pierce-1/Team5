@@ -18,9 +18,13 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping
-    public ResponseEntity<Booking> createBooking(@Valid @RequestBody Booking booking) {
-        Booking newBooking = bookingService.createBooking(booking);
+    @PostMapping("/profile/{profileId}/listing/{listingId}")
+    public ResponseEntity<Booking> createBooking(
+            @PathVariable Long profileId,
+            @PathVariable Long listingId,
+            @Valid @RequestBody Booking bookingDetails) {
+
+        Booking newBooking = bookingService.createBooking(profileId, listingId, bookingDetails);
         return ResponseEntity.ok(newBooking);
     }
 
@@ -54,4 +58,3 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 }
-

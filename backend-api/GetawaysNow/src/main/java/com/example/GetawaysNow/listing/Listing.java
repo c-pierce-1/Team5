@@ -1,6 +1,6 @@
 package com.example.GetawaysNow.listing;
 
-import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.profile.Profile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
