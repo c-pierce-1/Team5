@@ -14,12 +14,12 @@ public class Favorite {
     @Column(name = "ID")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ProfileID")
     @JsonIgnore
     private Profile profile;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ListingID")
     private Listing listing;
 
