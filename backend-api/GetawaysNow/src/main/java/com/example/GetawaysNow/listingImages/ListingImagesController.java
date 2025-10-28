@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class ListingImagesController {
     @Autowired
   private ListingImagesService ListingImagesService;
-  private ListingImagesController ListingImagesController;
 
   /**
-   * Endpoint to get all ListingImagess
+   * Endpoint to get all ListingImages
    *
-   * @return List of all ListingImagess
+   * @return List of all ListingImages
    */
-  @GetMapping("/ListingImagess")
-  public Object getAllListingImagess() {
-    return ListingImagesService.getAllListingImagess();
+  @GetMapping("/ListingImages")
+  public Object getAllListingImages() {
+    return ListingImagesService.getAllListingImages();
   }
 
 
@@ -33,7 +32,7 @@ public class ListingImagesController {
    * @param id The ID of the ListingImages to retrieve
    * @return The ListingImages with the specified ID
    */
-  @GetMapping("/ListingImagess/{id}")
+  @GetMapping("/ListingImages/{id}")
   public ListingImages getListingImagesByListingId(@PathVariable long id) {
     return ListingImagesService.getListingImagesById(id);
   }
@@ -44,9 +43,9 @@ public class ListingImagesController {
    * Endpoint to add a new ListingImages
    *
    * @param ListingImages The ListingImages to add
-   * @return List of all ListingImagess
+   * @return List of all ListingImages
    */
-  @PostMapping("/ListingImagess")
+  @PostMapping("/ListingImages")
   public Object addListingImages(@RequestBody ListingImages ListingImages) {
     return ListingImagesService.addListingImages(ListingImages);
   }
@@ -58,7 +57,7 @@ public class ListingImagesController {
    * @param ListingImages The updated ListingImages information
    * @return The updated ListingImages
    */
-  @PutMapping("/ListingImagess/{id}")
+  @PutMapping("/ListingImages/{id}")
   public ListingImages updateListingImages(@PathVariable Long id, @RequestBody ListingImages ListingImages) {
     ListingImagesService.updateListingImages(id, ListingImages);
     return ListingImagesService.getListingImagesById(id);
@@ -68,12 +67,12 @@ public class ListingImagesController {
    * Endpoint to delete a ListingImages
    *
    * @param id The ID of the ListingImages to delete
-   * @return List of all ListingImagess
+   * @return List of all ListingImages
    */
-  @DeleteMapping("/ListingImagess/{id}")
+  @DeleteMapping("/ListingImages/{id}")
   public Object deleteListingImages(@PathVariable Long id) {
     ListingImagesService.deleteListingImages(id);
-    return ListingImagesService.getAllListingImagess();
+    return ListingImagesService.getAllListingImages();
   }
 
   /**
@@ -82,7 +81,7 @@ public class ListingImagesController {
    * @param ListingImages The ListingImages to write
    * @return An empty string indicating success
    */
-  @PostMapping("/ListingImagess/writeFile")
+  @PostMapping("/ListingImages/writeFile")
   public Object writeJson(@RequestBody ListingImages ListingImages) {
     return ListingImagesService.writeJson(ListingImages);
   }
@@ -92,7 +91,7 @@ public class ListingImagesController {
    *
    * @return The contents of the JSON file
    */
-  @GetMapping("/ListingImagess/readFile")
+  @GetMapping("/ListingImages/readFile")
   public Object readJson() {
     return ListingImagesService.readJson();
 

@@ -16,11 +16,11 @@ public class ListingImagesService {
   private ListingImagesRepository ListingImagesRepository;
 
   /**
-   * Method to get all ListingImagess
+   * Method to get all ListingImages
    *
-   * @return List of all ListingImagess
+   * @return List of all ListingImages
    */
-  public Object getAllListingImagess() {
+  public Object getAllListingImages() {
     return ListingImagesRepository.findAll();
   }
 
@@ -73,7 +73,7 @@ public class ListingImagesService {
   public String writeJson(ListingImages ListingImages) {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
-      objectMapper.writeValue(new File("ListingImagess.json"), ListingImages);
+      objectMapper.writeValue(new File("ListingImages.json"), ListingImages);
       return "ListingImages written to JSON file successfully";
     } catch (IOException e) {
       e.printStackTrace();
@@ -90,7 +90,7 @@ public class ListingImagesService {
   public Object readJson() {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
-      return objectMapper.readValue(new File("ListingImagess.json"), ListingImages.class);
+      return objectMapper.readValue(new File("ListingImages.json"), ListingImages.class);
     } catch (IOException e) {
       e.printStackTrace();
       return null;

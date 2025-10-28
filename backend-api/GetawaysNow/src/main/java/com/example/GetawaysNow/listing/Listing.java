@@ -4,7 +4,6 @@ import com.example.GetawaysNow.Profile.Profile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -54,7 +53,7 @@ public class Listing {
     @Column(nullable = false) 
     private Float bathrooms;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
     private Profile profile; 
 
@@ -63,7 +62,6 @@ public class Listing {
     }
 
     public Listing() {
-        // Default no-arg constructor is often required by JPA
     }
 
     public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms,

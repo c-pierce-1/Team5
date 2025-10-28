@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -44,13 +43,9 @@ public class ReviewController {
    * @param listing_id The listing_id of the Review to search for
    * @return List of Reviews with the specified address
    */
-  @GetMapping("/Reviews/search/listing_id/{listing_id}")
-  public Object getReviewsByListing(@RequestParam Long listing_id) {
-    if (listing_id != null) {
-      return ReviewService.getReviewByListing(listing_id);
-    } else {
-      return ReviewService.getAllReviews();
-    }
+  @GetMapping("/Reviews/listing_id/{listing_id}")
+  public Object getReviewsByListing(@PathVariable Long listing_id) {
+    return ReviewService.getReviewByListing(listing_id);
 
   }
 
