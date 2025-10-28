@@ -37,6 +37,16 @@ public class ListingImagesController {
     return ListingImagesService.getListingImagesById(id);
   }
 
+   /**
+   * Endpoint to get Listings by listing id
+   *
+   * @param profile The profile of the Listing to search for
+   * @return List of Listings with the specified profile
+   */
+  @GetMapping("/ListingImages/listing/{listing}")
+  public Object getListingsByProfile(@PathVariable Long listingID) {
+    return ListingImagesService.getListingImagesByListing(listingID);
+  }
 
   
     /**

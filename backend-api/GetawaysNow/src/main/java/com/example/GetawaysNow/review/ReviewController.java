@@ -74,7 +74,6 @@ public class ReviewController {
     ReviewService.updateReview(id, Review);
     return ReviewService.getReviewById(id);
   }
-
   /**
    * Endpoint to delete a Review
    *

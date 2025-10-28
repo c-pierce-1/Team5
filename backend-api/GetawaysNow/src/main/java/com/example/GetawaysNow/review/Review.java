@@ -1,8 +1,5 @@
 package com.example.GetawaysNow.review;
 
-import com.example.GetawaysNow.Profile.Profile;
-import com.example.GetawaysNow.listing.Listing;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Review")
+@Table(name = "review")
 public class Review {
 
     @Id
@@ -22,11 +19,11 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "listing_id", nullable = false)
-    private Listing listing; 
+    private Long listingID; 
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
-    private Profile profile; 
+    private Long profileID; 
 
     @Column(length=500) 
     private String comment;
@@ -35,16 +32,16 @@ public class Review {
     @JoinColumn(name = "parent_id")
     private Review parentReview;
 
-    public Review(Long id, Listing listing, Profile profile){
+    public Review(Long id, Long listingID, Long profileID){
         this.id = id;
-        this.listing = listing;
-        this.profile = profile;
+        this.listingID = listingID;
+        this.profileID = profileID;
     }
 
-    public Review(Long id, Listing listing,  Profile profile, Review parentReview){
+    public Review(Long id, Long listingID,  Long profileID, Review parentReview){
         this.id = id;
-        this.listing = listing;
-        this.profile = profile;
+        this.listingID = listingID;
+        this.profileID = profileID;
         this.parentReview = parentReview;
     }
 
@@ -58,20 +55,20 @@ public class Review {
         this.id = id;
     }
 
-    public Listing getListing() {
-        return listing;
+    public Long getListing() {
+        return listingID;
     }
 
-    public void setListing(Listing listing) {
-        this.listing = listing;
+    public void setListing(Long listingID) {
+        this.listingID = listingID;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Long getProfile() {
+        return profileID;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setProfile(Long profileID) {
+        this.profileID = profileID;
     }
 
     public String getComment() {

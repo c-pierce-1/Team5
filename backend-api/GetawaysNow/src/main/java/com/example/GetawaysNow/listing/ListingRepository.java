@@ -19,7 +19,7 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
     List<Listing> getListingsByCity(String city);
 
     @Query(value = "select * from listing s where s.profile_id like '%' || ?1 || '%' ", nativeQuery = true)
-    List<Listing> getListingsByProfile(Long profile);
+    List<Listing> getListingsByProfile(Long profileID);
     
 }
 

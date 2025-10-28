@@ -67,8 +67,8 @@ public class ListingController {
    * @return List of Listings with the specified profile
    */
   @GetMapping("/Listings/profile/{profile}")
-  public Object getListingsByProfile(@PathVariable Long profile) {
-    return ListingService.getListingsByProfile(profile);
+  public Object getListingsByProfile(@PathVariable Long profileID) {
+    return ListingService.getListingsByProfile(profileID);
   }
 
 

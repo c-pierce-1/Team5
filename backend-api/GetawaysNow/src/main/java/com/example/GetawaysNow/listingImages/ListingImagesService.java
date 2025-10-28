@@ -34,7 +34,15 @@ public class ListingImagesService {
     return ListingImagesRepository.findById(ListingImagesId).orElse(null);
   }
 
-
+  /**
+   * Method to get Listing Images by listing
+   *
+   * @param listing The listing to search by
+   * @return List of Images with the specified listings
+   */
+  public Object getListingImagesByListing(Long listing) {
+    return ListingImagesRepository.getListingImagesByListing(listing);
+  }
 
 
   /**

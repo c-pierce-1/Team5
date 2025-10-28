@@ -1,7 +1,5 @@
 package com.example.GetawaysNow.listing;
 
-import com.example.GetawaysNow.Profile.Profile;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -55,7 +53,7 @@ public class Listing {
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
-    private Profile profile; 
+    private long profileID; 
 
     public Listing(Long id) {
         this.id = id;
@@ -65,7 +63,7 @@ public class Listing {
     }
 
     public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms,
-        Profile profile) {
+        long profileID) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -75,11 +73,11 @@ public class Listing {
         this.pricePerNight = pricePerNight;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
-        this.profile = profile;
+        this.profileID = profileID;
     }
 
     public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms, 
-        Profile profile, String description, String rules) {
+        Long profileID, String description, String rules) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -89,7 +87,7 @@ public class Listing {
         this.pricePerNight = pricePerNight;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
-        this.profile = profile;
+        this.profileID = profileID;
         this.description = description;
         this.rules = rules;
     }
@@ -140,8 +138,8 @@ public class Listing {
         return bathrooms;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public long getProfileID() {
+        return profileID;
     }
 
     // Setters
@@ -190,7 +188,7 @@ public class Listing {
         this.bathrooms = bathrooms;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setProfile(Long profileID) {
+        this.profileID = profileID;
     }
 }
