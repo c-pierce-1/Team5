@@ -44,7 +44,7 @@ public class ListingController {
    * @param address The address of the Listing to search for
    * @return List of Listings with the specified address
    */
-  @GetMapping("/Listings/search/address/{address}")
+  @GetMapping("/Listings/address/{address}")
   public Object getListingsByAddress(@RequestParam String address) {
     if (address != null) {
       return ListingService.getListingsByAddress(address);
