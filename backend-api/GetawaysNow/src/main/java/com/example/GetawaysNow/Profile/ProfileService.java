@@ -1,11 +1,12 @@
-package com.example.GetawaysNow.profile;
+package com.example.GetawaysNow.Profile;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional

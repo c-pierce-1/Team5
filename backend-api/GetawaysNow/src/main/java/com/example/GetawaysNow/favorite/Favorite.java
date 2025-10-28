@@ -1,6 +1,6 @@
-package com.example.getawaysnow.favorite;
+package com.example.GetawaysNow.favorite;
 
-import com.example.GetawaysNow.profile.Profile;
+import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.listing.Listing;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

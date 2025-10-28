@@ -1,15 +1,17 @@
-package com.example.getawaysnow.favorite;
+package com.example.GetawaysNow.favorite;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
-import com.example.GetawaysNow.profile.Profile;
-import com.example.GetawaysNow.profile.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.Profile.ProfileRepository;
 import com.example.GetawaysNow.listing.Listing;
 import com.example.GetawaysNow.listing.ListingRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 @Transactional
