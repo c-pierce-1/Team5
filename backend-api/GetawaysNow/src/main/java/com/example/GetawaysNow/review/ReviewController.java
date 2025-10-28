@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.GetawaysNow.listing.Listing;
+
 
 @RestController
 public class ReviewController {
@@ -44,7 +46,7 @@ public class ReviewController {
    * @return List of Reviews with the specified address
    */
   @GetMapping("/Reviews/listing_id/{listing_id}")
-  public Object getReviewsByListing(@PathVariable Long listing_id) {
+  public Object getReviewsByListing(@PathVariable Listing listing_id) {
     return ReviewService.getReviewByListing(listing_id);
 
   }

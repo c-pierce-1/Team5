@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.GetawaysNow.listing.Listing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -41,7 +42,7 @@ public class ReviewService {
    * @param listing_id The ID of the Review to retrieve
    * @return The Review with the specified ID
    */
-  public Object getReviewByListing(@PathVariable long listing_id) {
+  public Object getReviewByListing(@PathVariable Listing listing_id) {
     return ReviewRepository.getReviewsByListing(listing_id);
   }
 

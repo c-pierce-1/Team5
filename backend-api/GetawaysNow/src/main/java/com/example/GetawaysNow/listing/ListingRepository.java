@@ -1,5 +1,7 @@
 package com.example.GetawaysNow.listing;
 
+import com.example.GetawaysNow.Profile.*;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,7 +21,7 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
     List<Listing> getListingsByCity(String city);
 
     @Query(value = "select * from listing s where s.profile_id like '%' || ?1 || '%' ", nativeQuery = true)
-    List<Listing> getListingsByProfile(Long profileID);
+    List<Listing> getListingsByProfile(Profile profileID);
     
 }
 

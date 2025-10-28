@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.GetawaysNow.Profile.Profile;
+
 
 @RestController
 public class ListingController {
@@ -63,11 +65,11 @@ public class ListingController {
  /**
    * Endpoint to get Listings by profile
    *
-   * @param profile The profile of the Listing to search for
+   * @param profileID The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
   @GetMapping("/Listings/profile/{profile}")
-  public Object getListingsByProfile(@PathVariable Long profileID) {
+  public Object getListingsByProfile(@PathVariable Profile profileID) {
     return ListingService.getListingsByProfile(profileID);
   }
 

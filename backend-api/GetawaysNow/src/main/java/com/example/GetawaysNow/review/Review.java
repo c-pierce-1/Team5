@@ -1,5 +1,8 @@
 package com.example.GetawaysNow.review;
 
+import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.listing.Listing;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,11 +22,11 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "listing_id", nullable = false)
-    private Long listingID; 
+    private Listing listingID; 
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
-    private Long profileID; 
+    private Profile profileID; 
 
     @Column(length=500) 
     private String comment;
@@ -32,13 +35,13 @@ public class Review {
     @JoinColumn(name = "parent_id")
     private Review parentReview;
 
-    public Review(Long id, Long listingID, Long profileID){
+    public Review(Long id, Listing listingID, Profile profileID){
         this.id = id;
         this.listingID = listingID;
         this.profileID = profileID;
     }
 
-    public Review(Long id, Long listingID,  Long profileID, Review parentReview){
+    public Review(Long id, Listing listingID,  Profile profileID, Review parentReview){
         this.id = id;
         this.listingID = listingID;
         this.profileID = profileID;
@@ -55,19 +58,19 @@ public class Review {
         this.id = id;
     }
 
-    public Long getListing() {
+    public Listing getListing() {
         return listingID;
     }
 
-    public void setListing(Long listingID) {
+    public void setListing(Listing listingID) {
         this.listingID = listingID;
     }
 
-    public Long getProfile() {
+    public Profile getProfile() {
         return profileID;
     }
 
-    public void setProfile(Long profileID) {
+    public void setProfile(Profile profileID) {
         this.profileID = profileID;
     }
 

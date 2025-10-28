@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.GetawaysNow.Profile.Profile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -73,7 +74,7 @@ public class ListingService {
    * @param profileID The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
-  public Object getListingsByProfile(Long profileID) {
+  public Object getListingsByProfile(Profile profileID) {
     return ListingRepository.getListingsByProfile(profileID);
   }
 

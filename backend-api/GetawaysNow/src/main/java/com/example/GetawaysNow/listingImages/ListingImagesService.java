@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.GetawaysNow.listing.Listing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -40,7 +41,7 @@ public class ListingImagesService {
    * @param listing The listing to search by
    * @return List of Images with the specified listings
    */
-  public Object getListingImagesByListing(Long listing) {
+  public Object getListingImagesByListing(Listing listing) {
     return ListingImagesRepository.getListingImagesByListing(listing);
   }
 

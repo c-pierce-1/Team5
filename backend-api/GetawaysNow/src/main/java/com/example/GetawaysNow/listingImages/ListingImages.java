@@ -1,5 +1,7 @@
 package com.example.GetawaysNow.listingImages;
 
+import com.example.GetawaysNow.listing.Listing;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,12 +21,12 @@ public class ListingImages {
 
     @ManyToOne
     @JoinColumn(name = "listing_id", nullable = false)
-    private Long listingID;
+    private Listing listingID;
 
     @Column(nullable = false)
     private String imagePath;
 
-    public ListingImages(Long id, Long listingID, String imagePath) {
+    public ListingImages(Long id, Listing listingID, String imagePath) {
         this.id = id;
         this.listingID = listingID;
         this.imagePath= imagePath;

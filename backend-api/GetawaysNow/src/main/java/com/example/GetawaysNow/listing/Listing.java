@@ -1,5 +1,7 @@
 package com.example.GetawaysNow.listing;
 
+import com.example.GetawaysNow.Profile.Profile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,7 +55,7 @@ public class Listing {
 
     @ManyToOne
     @JoinColumn(name = "profile_id", nullable = false)
-    private long profileID; 
+    private Profile profileID; 
 
     public Listing(Long id) {
         this.id = id;
@@ -63,7 +65,7 @@ public class Listing {
     }
 
     public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms,
-        long profileID) {
+        Profile profileID) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -77,7 +79,7 @@ public class Listing {
     }
 
     public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms, 
-        Long profileID, String description, String rules) {
+        Profile profileID, String description, String rules) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -138,7 +140,7 @@ public class Listing {
         return bathrooms;
     }
 
-    public long getProfileID() {
+    public Profile getProfileID() {
         return profileID;
     }
 
@@ -188,7 +190,7 @@ public class Listing {
         this.bathrooms = bathrooms;
     }
 
-    public void setProfile(Long profileID) {
+    public void setProfile(Profile profileID) {
         this.profileID = profileID;
     }
 }
