@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.Profile.ProfileRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -15,6 +16,8 @@ public class ListingService {
 
   @Autowired
   private ListingRepository ListingRepository;
+  @Autowired
+  private ProfileRepository profileRepository;
 
   /**
    * Method to get all Listings
@@ -56,8 +59,6 @@ public class ListingService {
     return ListingRepository.getListingsByName(name);
   }
 
-
-  
     /**
    * Method to get Listings by city
    *
@@ -74,9 +75,12 @@ public class ListingService {
    * @param profileID The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
-  public Object getListingsByProfile(Profile profileID) {
-    return ListingRepository.getListingsByProfile(profileID);
-  }
+  public Object getListingsByProfile(Long profileId) {
+    Profile profile = profileRepository.findById(profileId)
+        .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
+
+    return ListingRepository.findByProfileID(profile);
+}
 
 
 
@@ -85,9 +89,24 @@ public class ListingService {
    *
    * @param Listing The Listing to add
    */
-  public Listing addListing(Listing Listing) {
-    return ListingRepository.save(Listing);
-  }
+public Listing addListing(Listing listing) {
+    // Get the Profile object (from JSON) that only has the ID set
+    Profile profileFromRequest = listing.getProfileID();
+
+    // Extract the ID as a Long
+    Long profileId = profileFromRequest.getProfileId();
+
+    // Fetch the full Profile entity from the database
+    Profile profile = profileRepository.findById(profileId)
+            .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
+
+    // Attach the real Profile entity to the listing
+    listing.setProfile(profile);
+
+    // Save the Listing
+    return ListingRepository.save(listing);
+}
+
 
   /**
    * Method to update a Listing

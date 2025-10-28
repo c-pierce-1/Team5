@@ -1,12 +1,12 @@
 package com.example.GetawaysNow.listing;
 
-import com.example.GetawaysNow.Profile.*;
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import com.example.GetawaysNow.Profile.Profile;
 
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Long> {
@@ -20,8 +20,7 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
     @Query(value = "select * from listing s where s.city like '%' || ?1 || '%' ", nativeQuery = true)
     List<Listing> getListingsByCity(String city);
 
-    @Query(value = "select * from listing s where s.profile_id like '%' || ?1 || '%' ", nativeQuery = true)
-    List<Listing> getListingsByProfile(Profile profileID);
+    List<Listing> findByProfileID(Profile profileID);
     
 }
 
