@@ -19,7 +19,7 @@ public class Favorite {
     @JsonIgnore
     private Profile profile;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ListingID")
     private Listing listing;
 

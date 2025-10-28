@@ -1,6 +1,7 @@
 package com.example.GetawaysNow.listing;
 
 import com.example.GetawaysNow.profile.Profile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,6 +57,7 @@ public class Listing {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id", nullable = false)
+    @JsonIgnore
     private Profile profile; 
 
     public Listing(Long id) {
