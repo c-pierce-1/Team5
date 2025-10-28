@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.GetawaysNow.listing.Listing;
-
 
 @RestController
 public class ListingImagesController {
@@ -45,10 +43,12 @@ public class ListingImagesController {
    * @param listingID The profile of the Listing to search for
    * @return List of Listings with the specified profile
    */
-  @GetMapping("/ListingImages/listing/{listing}")
-  public Object getListingImagesByListing(@PathVariable Listing listingID) {
-    return ListingImagesService.getListingImagesByListing(listingID);
-  }
+  @GetMapping("/ListingImages/listing/{listingId}")
+  public Object getListingImagesByListing(@PathVariable Long listingId) {
+    return ListingImagesService.getListingImagesByListing(listingId);
+}
+
+
 
   
     /**

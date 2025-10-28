@@ -5,97 +5,77 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.GetawaysNow.listing.Listing;
+import com.example.GetawaysNow.listing.ListingRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class ListingImagesService {
 
   @Autowired
-  private ListingImagesRepository ListingImagesRepository;
+  private ListingImagesRepository listingImagesRepository;
 
-  /**
-   * Method to get all ListingImages
-   *
-   * @return List of all ListingImages
-   */
+  @Autowired
+  private ListingRepository listingRepository;
+
   public Object getAllListingImages() {
-    return ListingImagesRepository.findAll();
+    return listingImagesRepository.findAll();
   }
 
-  /**
-   * Method to get a ListingImages by ID
-   *
-   * @param ListingImagesId The ID of the ListingImages to retrieve
-   * @return The ListingImages with the specified ID
-   */
-  public ListingImages getListingImagesById(@PathVariable long ListingImagesId) {
-    return ListingImagesRepository.findById(ListingImagesId).orElse(null);
+  public ListingImages getListingImagesById(long listingImagesId) {
+    return listingImagesRepository.findById(listingImagesId).orElse(null);
   }
 
-  /**
-   * Method to get Listing Images by listing
-   *
-   * @param listing The listing to search by
-   * @return List of Images with the specified listings
-   */
-  public Object getListingImagesByListing(Listing listing) {
-    return ListingImagesRepository.getListingImagesByListing(listing);
+public Object getListingImagesByListing(Long listingId) {
+    Listing listing = listingRepository.findById(listingId)
+        .orElseThrow(() -> new RuntimeException("Listing not found with id: " + listingId));
+
+    return listingImagesRepository.findBylistingID(listing);
+}
+
+
+
+  public ListingImages addListingImages(ListingImages listingImages) {
+    // get the nested listing object from the JSON
+    Listing listingFromRequest = listingImages.getListingID();
+
+    if (listingFromRequest == null || listingFromRequest.getId() == null) {
+      throw new IllegalArgumentException("ListingImages must include a valid listingID");
+    }
+
+    Long listingId = listingFromRequest.getId();
+
+    // fetch managed Listing entity
+    Listing listing = listingRepository.findById(listingId)
+            .orElseThrow(() -> new RuntimeException("Listing not found with id: " + listingId));
+
+    // attach managed entity
+    listingImages.setListing(listing);
+
+    // save
+    return listingImagesRepository.save(listingImages);
   }
 
-
-  /**
-   * Method to add a new ListingImages
-   *
-   * @param ListingImages The ListingImages to add
-   */
-  public ListingImages addListingImages(ListingImages ListingImages) {
-    return ListingImagesRepository.save(ListingImages);
+  public ListingImages updateListingImages(Long listingImagesId, ListingImages listingImages) {
+    return listingImagesRepository.save(listingImages);
   }
 
-  /**
-   * Method to update a ListingImages
-   *
-   * @param ListingImagesId The ID of the ListingImages to update
-   * @param ListingImages   The updated ListingImages information
-   */
-  public ListingImages updateListingImages(Long ListingImagesId, ListingImages ListingImages) {
-    return ListingImagesRepository.save(ListingImages);
+  public void deleteListingImages(Long listingImagesId) {
+    listingImagesRepository.deleteById(listingImagesId);
   }
 
-  /**
-   * Method to delete a ListingImages
-   *
-   * @param ListingImagesId The ID of the ListingImages to delete
-   */
-  public void deleteListingImages(Long ListingImagesId) {
-    ListingImagesRepository.deleteById(ListingImagesId);
-  }
-
-  /**
-   * Method to write a ListingImages object to a JSON file
-   *
-   * @param ListingImages The ListingImages object to write
-   */
-  public String writeJson(ListingImages ListingImages) {
+  public String writeJson(ListingImages listingImages) {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
-      objectMapper.writeValue(new File("ListingImages.json"), ListingImages);
+      objectMapper.writeValue(new File("ListingImages.json"), listingImages);
       return "ListingImages written to JSON file successfully";
     } catch (IOException e) {
       e.printStackTrace();
       return "Error writing ListingImages to JSON file";
     }
-
   }
 
-  /**
-   * Method to read a ListingImages object from a JSON file
-   *
-   * @return The ListingImages object read from the JSON file
-   */
   public Object readJson() {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
@@ -104,7 +84,5 @@ public class ListingImagesService {
       e.printStackTrace();
       return null;
     }
-
   }
-
 }
