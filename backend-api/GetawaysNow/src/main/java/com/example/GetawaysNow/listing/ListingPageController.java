@@ -2,11 +2,14 @@ package com.example.GetawaysNow.listing;
 
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.example.GetawaysNow.Profile.Profile;
 
 @Controller
 @RequestMapping("/Listings/page")
