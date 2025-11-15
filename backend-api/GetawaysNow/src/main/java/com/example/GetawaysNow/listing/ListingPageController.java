@@ -1,18 +1,21 @@
 package com.example.GetawaysNow.listing;
 
-import com.example.GetawaysNow.listingImages.ListingImages;
-import com.example.GetawaysNow.listingImages.ListingImagesService;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.listingImages.ListingImages;
+import com.example.GetawaysNow.listingImages.ListingImagesService;
 
 @Controller
-@RequestMapping("/Listings/page")
+@RequestMapping("/")   // Clean root URLs
 public class ListingPageController {
 
     private final ListingService listingService;
@@ -23,11 +26,11 @@ public class ListingPageController {
         this.listingImagesService = listingImagesService;
     }
 
-    /** ----------------------------------------------------------------------
-     * VIEW LISTING PAGE (DETAIL PAGE)
-     * URL: /Listings/page/{id}
-     * -------------------------------------------------------------------- */
-    @GetMapping("/{id}")
+    /*--------------------------------------------------------------
+     VIEW LISTING PAGE
+     URL: /listing/{id}
+    --------------------------------------------------------------*/
+    @GetMapping("/listing/{id}")
     public String viewListing(@PathVariable Long id, Model model) {
 
         Listing listing = listingService.getListingById(id);
@@ -43,24 +46,38 @@ public class ListingPageController {
         return "view_listing";
     }
 
-
-
-    /** ----------------------------------------------------------------------
-     * CREATE LISTING FORM (Future: Pull profile from logged-in user)
-     * URL: /Listings/page/create
-     * -------------------------------------------------------------------- */
-    @GetMapping("/create")
+    /*--------------------------------------------------------------
+     CREATE LISTING FORM
+     URL: /listing/create
+    --------------------------------------------------------------*/
+    @GetMapping("/listing/create")
     public String createListingForm(Model model) {
         model.addAttribute("listing", new Listing());
         return "create_listing";
     }
 
+    /*--------------------------------------------------------------
+     CREATE LISTING SUBMIT (POST)
+     URL: /listing/create
+    --------------------------------------------------------------*/
+    @PostMapping("/listing/create")
+    public String createListingSubmit(@ModelAttribute Listing listing) {
 
-    /** ----------------------------------------------------------------------
-     * EDIT LISTING FORM
-     * URL: /Listings/page/edit/{id}
-     * -------------------------------------------------------------------- */
-    @GetMapping("/edit/{id}")
+        // TODO: Replace with actual logged-in user
+        Profile dummyProfile = new Profile();
+        dummyProfile.setProfileId(1L);
+        listing.setProfile(dummyProfile);
+
+        listingService.addListing(listing);
+
+        return "redirect:/listing/" + listing.getId();
+    }
+
+    /*--------------------------------------------------------------
+     EDIT LISTING FORM
+     URL: /listing/{id}/edit
+    --------------------------------------------------------------*/
+    @GetMapping("/listing/{id}/edit")
     public String editListingForm(@PathVariable Long id, Model model) {
 
         Listing listing = listingService.getListingById(id);
@@ -72,12 +89,26 @@ public class ListingPageController {
         return "edit_listing";
     }
 
+    /*--------------------------------------------------------------
+     EDIT LISTING SUBMIT (POST)
+     URL: /listing/{id}/edit
+    --------------------------------------------------------------*/
+    @PostMapping("/listing/{id}/edit")
+    public String editListingSubmit(@PathVariable Long id, @ModelAttribute Listing listing) {
 
-    /** ----------------------------------------------------------------------
-     * PROVIDER'S LISTINGS PAGE
-     * URL: /Listings/page/profile/{profileID}
-     * -------------------------------------------------------------------- */
-    @GetMapping("/profile/{profileID}")
+        Listing original = listingService.getListingById(id);
+        listing.setProfile(original.getProfileID());
+
+        listingService.updateListing(id, listing);
+
+        return "redirect:/listing/" + id;
+    }
+
+    /*--------------------------------------------------------------
+     PROVIDER'S LISTINGS
+     URL: /profile/{profileID}/listings
+    --------------------------------------------------------------*/
+    @GetMapping("/profile/{profileID}/listings")
     public String myListings(@PathVariable Long profileID, Model model) {
 
         List<Listing> listings = listingService.getListingsByProfile(profileID);
@@ -87,40 +118,4 @@ public class ListingPageController {
 
         return "my_listings";
     }
-
-
-    /** ----------------------------------------------------------------------
- * CREATE LISTING — POST
- * URL: /Listings/page/create
- * -------------------------------------------------------------------- */
-@PostMapping("/create")
-public String createListingSubmit(@ModelAttribute Listing listing) {
-
-    // TODO: Replace with logged-in user profile later
-    Profile dummyProfile = new Profile();
-    dummyProfile.setProfileId(1L);
-    listing.setProfile(dummyProfile);
-
-    listingService.addListing(listing);
-
-    return "redirect:/Listings/page/" + listing.getId();
-}
-
-
-/** ----------------------------------------------------------------------
- * EDIT LISTING — POST
- * URL: /Listings/page/edit/{id}
- * -------------------------------------------------------------------- */
-@PostMapping("/edit/{id}")
-public String editListingSubmit(@PathVariable Long id, @ModelAttribute Listing listing) {
-
-    // Keep original profile
-    Listing original = listingService.getListingById(id);
-    listing.setProfile(original.getProfileID());
-
-    listingService.updateListing(id, listing);
-
-    return "redirect:/Listings/page/" + id;
-}
-
 }
