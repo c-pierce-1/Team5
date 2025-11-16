@@ -98,6 +98,12 @@
         <input type="text" id="phoneNum" name="phoneNum" class="edit-input" value="${profile.phoneNum}">
       </div>
 
+      <div>
+            <label for="password">New Password:</label>
+            <input type="password" id="password" name="password" 
+                   placeholder="Leave blank to keep current password">
+        </div>
+
       <div class="info-row">
         <button type="submit" class="save-btn">Save Changes</button>
       </div>
