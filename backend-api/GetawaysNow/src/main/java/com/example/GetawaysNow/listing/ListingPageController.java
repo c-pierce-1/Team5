@@ -65,7 +65,7 @@ public class ListingPageController {
 
         // TODO: Replace with actual logged-in user
         Profile dummyProfile = new Profile();
-        dummyProfile.setProfileId(1L);
+        dummyProfile.setProfileId(4L);
         listing.setProfile(dummyProfile);
 
         listingService.addListing(listing);

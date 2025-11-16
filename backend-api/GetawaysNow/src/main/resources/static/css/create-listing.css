@@ -1,234 +1,116 @@
-/* ===== Layout wrapper for the page content (below the navbar) ===== */
-
+/* ⬅ MAKE LEFT AND RIGHT SIDE-BY-SIDE */
 .form-and-carousel {
-  max-width: 1100px;
-  margin: 2.5rem auto;
-  padding: 0 1.5rem;
   display: flex;
-  justify-content: center;
+  gap: 40px;
   align-items: flex-start;
-  gap: 3rem;
+  padding: 30px;
+  max-width: 1400px;
+  margin: auto;
 }
 
-/* ===== Left side: image upload panel ===== */
-
+/* ⬅ LEFT SIDE SIZE */
 .image-section {
-  flex: 1 1 40%;
+  width: 40%;
 }
 
-.image-section h2,
-.image-section h3 {
-  margin: 0 0 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
+/* ⬅ RIGHT SIDE SIZE */
+.listing-form-container {
+  width: 45%;
+  background-color: #4c8ea8;
+  padding: 2rem;
+  border-radius: 12px;
 }
 
-/* Drop-zone box */
+.image-carousel {
+  width: 100%;
+  height: 350px;       
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f1f1f1;
+  position: relative;
+}
+
+.slides-listing {
+  display: flex;
+  height: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+}
+
 .image-upload-zone {
   border: 2px dashed #ccc;
-  border-radius: 12px;
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  background-color: #f7fafc;
-  max-width: 260px;
-}
-
-.image-upload-zone i {
-  font-size: 1.5rem;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.image-upload-zone p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.image-upload-zone.dragover {
-  background-color: #eef8ff;
-  border-color: #007bff;
-}
-
-/* Where preview images will go (optional) */
-.image-carousel {
-  margin-top: 1rem;
-}
-
-/* ===== Right side: listing form panel ===== */
-
-.listing-form-container {
-  flex: 1 1 45%;
-  background-color: #4c8ea8;
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  color: #ffffff;
-}
-
-.form-header h1 {
-  margin: 0 0 1.25rem;
-  font-size: 1.6rem;
-  letter-spacing: 0.03em;
-}
-
-/* Form groups / labels / inputs */
-
-.form-group {
-  margin-bottom: 1.1rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.form-group small {
-  font-size: 0.75rem;
-  opacity: 0.9;
-}
-
-/* Text, number, and textarea fields */
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group textarea {
-  width: 100%;
-  padding: 0.55rem 0.65rem;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  font-size: 0.95rem;
-  box-sizing: border-box;
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Save button */
-#save-listing-btn,
-.listing-form-container button[type="submit"] {
-  width: 100%;
-  margin-top: 0.75rem;
-  padding: 0.65rem 0.75rem;
-  border-radius: 6px;
-  border: none;
-  background-color: #f4f4f4;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: background-color 0.18s ease, transform 0.08s ease;
-}
-
-#save-listing-btn:hover,
-.listing-form-container button[type="submit"]:hover {
-  background-color: #e2e2e2;
-  transform: translateY(-1px);
-}
-
-/* ===== Responsive behaviour ===== */
-
-@media (max-width: 900px) {
-  .form-and-carousel {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .image-section,
-  .listing-form-container {
-    flex: 1 1 100%;
-  }
-
-  .listing-form-container {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-}
-
-
-/* ---------------------------------------------------
-   IMAGE UPLOAD ZONE
---------------------------------------------------- */
-.image-upload-zone {
-  border: 2px dashed #7fa9c4;
-  border-radius: 10px;
   padding: 30px;
-  text-align: center;
-  background: #f8fcff;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.image-upload-zone:hover,
-.image-upload-zone.dragover {
-  background: #e6f4ff;
-  border-color: #4a90e2;
-}
-
-.image-upload-zone i {
-  font-size: 40px;
-  color: #4a90e2;
-}
-
-.image-upload-zone p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #416175;
-}
-
-
-/* ---------------------------------------------------
-   PREVIEW CONTAINER
---------------------------------------------------- */
-.preview-wrapper {
-  margin-top: 20px;
-}
-
-.preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
-}
-
-.preview-img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  transition: 0.3s ease;
-}
-
-.preview-img:hover {
-  transform: scale(1.04);
+  text-align: center;
+  cursor: pointer;
 }
 
 
-/* ---------------------------------------------------
-   CAROUSEL NAV BUTTONS
---------------------------------------------------- */
-.carousel-nav {
+/* Carousel wrapper */
+.image-carousel {
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+/* Slide container (HORIZONTAL scroll strip) */
+.slides-listing {
+  display: flex;                 /* REQUIRED for sliding left/right */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease;
+}
+
+/* Each slide */
+.slide {
+  min-width: 100%;               /* EXACT width of container */
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+/* Nav buttons */
+.image-carousel .nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 12px;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 10px;
 }
 
-.carousel-nav button {
-  background: #4a90e2;
+.image-carousel .nav button {
+  background: rgba(255, 255, 255, 0.8);
   border: none;
-  color: white;
-  font-size: 18px;
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.25s ease;
+  font-size: 18px;
 }
 
-.carousel-nav button:hover {
-  background: #2c6bb0;
+.image-carousel .nav button:hover {
+  background: white;
 }
+
+.two-column-group {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.two-column-group .form-group {
+  flex: 1;
+}
+

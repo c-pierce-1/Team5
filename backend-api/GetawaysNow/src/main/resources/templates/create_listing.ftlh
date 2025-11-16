@@ -57,67 +57,104 @@
     </div>
   </nav>
 
-<div class="form-group">
-  <label for="images">Upload Images:</label>
+<div class="form-and-carousel">
 
-  <div class="image-upload-zone" id="upload-zone">
-    <i class="bi bi-images"></i>
-    <p>Drag & drop images here, or click to select</p>
-  </div>
+    <!-- LEFT SIDE — IMAGES -->
+    <div class="image-section">
 
-  <input type="file" id="images" name="images" accept="image/*" multiple style="display:none;" />
+        <!-- Image Preview Carousel -->
+        <div class="image-carousel">
+            <div class="slides-listing" id="preview-slides"></div>
 
-  <!-- PREVIEW GRID -->
-  <div class="preview-wrapper">
-      <div class="preview-grid" id="preview-grid"></div>
+            <div class="nav">
+                <button type="button" onclick="prevPreviewSlide()">❮</button>
+                <button type="button" onclick="nextPreviewSlide()">❯</button>
+            </div>
+        </div>
 
-      <div class="carousel-nav" id="carousel-nav" style="display:none;">
-        <button onclick="prevPreview()">❮</button>
-        <button onclick="nextPreview()">❯</button>
-      </div>
-  </div>
+        <!-- Upload Area -->
+        <div class="form-group">
+            <label>Upload Images:</label>
+
+            <div class="image-upload-zone" id="upload-zone">
+                <i class="bi bi-images"></i>
+                <p>Drag & drop images here, or click to select</p>
+            </div>
+
+            <input type="file" id="images" name="images" accept="image/*" multiple style="display:none;" />
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE — LISTING FORM -->
+    <form action="/listing/create" method="post" id="listing-form" class="listing-form-container">
+
+        <div class="form-header">
+            <h1>Create Listing</h1>
+        </div>
+
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Enter listing name" required />
+        </div>
+
+       <!-- ADDRESS GROUP -->
+        <div class="form-group">
+        <label>Address:</label>
+        <input type="text" name="address" placeholder="Enter address" required />
+        </div>
+
+        <div class="form-row">
+        <div class="form-group">
+            <label>City:</label>
+            <input type="text" name="city" placeholder="Enter city" required />
+        </div>
+
+        <div class="form-group">
+            <label>State:</label>
+            <input type="text" name="state" placeholder="NC" required />
+        </div>
+
+        <div class="form-group">
+            <label>Zip Code:</label>
+            <input type="text" name="zipCode" placeholder="Enter ZIP Code" required />
+        </div>
+    </div>
+
+
+        <!-- BEDROOMS + BATHROOMS GROUP -->
+        <div class="two-column-group">
+        <div class="form-group">
+            <label>Bedrooms:</label>
+            <input type="number" name="bedrooms" step="0.5" placeholder="Bedrooms (e.g. 2, 2.5)" required />
+        </div>
+
+        <div class="form-group">
+            <label>Bathrooms:</label>
+            <input type="number" name="bathrooms" step="0.5" placeholder="Bathrooms (e.g. 1, 1.5)" required />
+        </div>
+        </div>
+
+
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea name="description" rows="4" placeholder="Enter description" required></textarea>
+        </div>
+
+        <h3>Price Per Night</h3>
+        <input type="number" name="pricePerNight" placeholder="Enter Price Per Night" required />
+
+        <h3>Rules</h3>
+        <textarea name="rules" rows="5" placeholder="Enter rules or guidelines"></textarea>
+
+        <div class="form-actions">
+            <button type="submit">Save Listing</button>
+            <button type="reset" class="clear-btn"><i class="bi bi-trash"></i></button>
+        </div>
+
+    </form>
 </div>
 
-
-  <!-- RIGHT SIDE — LISTING FORM -->
-  <form action="/Listings/page/create" method="post" id="listing-form" class="listing-form-container">
-
-    <div class="form-header">
-      <h1>Create Listing</h1>
-    </div>
-
-    <div class="form-group">
-      <label>Name:</label>
-      <input type="text" name="name" placeholder="Enter listing name" required />
-    </div>
-
-    <div class="form-group">
-      <label>Address:</label>
-      <input type="text" name="address" placeholder="Enter address" required />
-    </div>
-
-    <div class="form-group">
-      <label>Description:</label>
-      <textarea name="description" rows="4" placeholder="Enter description" required></textarea>
-    </div>
-
-    <div class="price-section">
-      <h3>Price Per Night</h3>
-      <input type="number" name="pricePerNight" placeholder="Enter Price Per Night" required />
-    </div>
-
-    <div class="rules-section">
-      <h3>Rules</h3>
-      <textarea name="rules" rows="5" placeholder="Enter rules or guidelines"></textarea>
-    </div>
-
-    <div class="form-actions">
-      <button type="submit">Save Listing</button>
-      <button type="reset" class="clear-btn"><i class="bi bi-trash"></i></button>
-    </div>
-
-  </form>
-</div>
 
 <script src="/scripting/navBar.js"></script>
 <script src="/scripting/createEdit.js"></script>
