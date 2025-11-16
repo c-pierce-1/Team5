@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Screen</title>
+  <link rel="stylesheet" href="/Style-Sheet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <ul class="navbar-nav flex-row align-items-center">
+        <!-- Three dots dropdown -->
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="dropdown-toggle">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu-left">
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
+              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a Listing</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Logo -->
+        <li class="nav-item ms-3">
+          <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
+        </li>
+      </ul>
+
+      <!-- Profile dropdown -->
+      <div class="ms-auto">
+        <div class="dropdown">
+          <button class="dropdown-toggle">
+            <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40" height="40" />
+          </button>
+          <ul class="dropdown-menu-right">
+            <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
+            <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
+            <li><a class="dropdown-item" href="/high-fidelity-prototype/logout.html">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Logo Section -->
+<div class="logo-container">
+  <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Getaways Now Logo" class="logo" />
+</div>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" placeholder="Search rentals..." id="search-bar" />
+    <button onclick="handleSearch()">
+    <i class="bi bi-search"></i>
+    
+</div>
+    <!-- Carousel Container -->
+    <div id="carousel-container"></div>
+</body>
+  <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+  <script src="/high-fidelity-prototype/scripting/home.js"></script>
+</html>

@@ -14,26 +14,16 @@
     <nav class="navbar">
         <div class="container-fluid">
             <ul class="navbar-nav flex-row align-items-center">
-                <!-- Three dots dropdown -->
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="dropdown-toggle">
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </button>
-                        <ul class="dropdown-menu-left">
-                            <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
-                            <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
-                            <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
-                            <li><a class="dropdown-item"
-                                    href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a
-                                    Listing</a></li>
-                        </ul>
-                    </div>
+                    <ul class="dropdown-menu-left">
+                        <li><a class="dropdown-item" href="/">Home</a></li>
+                        <li><a class="dropdown-item" href="/profile/${profileId}/favorites">Favorites</a></li>
+                        <li><a class="dropdown-item" href="/profile/${profileId}/listings">View My Listings</a></li>
+                    </ul>
                 </li>
 
-                <!-- Logo -->
                 <li class="nav-item ms-3">
-                    <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
+                    <img src="/images/Logo.jpg" alt="Logo" width="100" height="50" />
                 </li>
             </ul>
 
@@ -41,43 +31,41 @@
             <div class="ms-auto">
                 <div class="dropdown">
                     <button class="dropdown-toggle">
-                        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle"
-                            width="40" height="40" />
+                        <img src="/images/default user.jpg" alt="Profile" class="rounded-circle" width="40"
+                            height="40" />
                     </button>
                     <ul class="dropdown-menu-right">
-                        <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
-                        <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
-                        <li><a class="dropdown-item" href="/high-fidelity-prototype/logout.html">Logout</a></li>
+                        <li><a class="dropdown-item" href="/profile/${profileId}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+
     <div class="checkout-container" style="display: flex; gap: 2rem; margin: 2rem;">
-        <!-- Booking Info -->
-        <div class="booking-box" style="flex: 1;">
+
+        <form class="booking-box" style="flex: 1;" action="/booking/create" method="POST">
+
             <h2>Check-Out</h2>
-            <label>Check-in Date</label>
-            <input type="text" value="2025-10-25" readonly>
 
-            <label>Total Nights</label>
-            <input type="text" value="3" readonly>
+            <input type="hidden" name="profileId" value="${profileId}">
+            <input type="hidden" name="listingId" value="${listingId}">
 
-            <label>Price per Night</label>
-            <input type="text" value="$180" readonly>
+            <label for="startDate">Check-in Date</label>
+            <input type="date" id="startDate" name="startDate">
 
-            <label>Taxes</label>
-            <input type="text" value="$37.8" readonly>
+            <label for="endDate">Check-out Date</label>
+            <input type="date" id="endDate" name="endDate">
 
-            <label>Cleaning Fees</label>
-            <input type="text" value="$20" readonly>
+            <label for="totalPrice">Total</label>
+            <input type="number" id="totalPrice" name="totalPrice" step="0.01" placeholder="e.g., 590.80">
 
-            <label>Total</label>
-            <input type="text" value="$597.8" readonly>
-
-            <button class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">Confirm
-                Booking</button>
-        </div>
+            <button type="submit" class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">
+                Confirm Booking
+            </button>
+        </form>
 
         <!-- Carousel -->
         <div class="carousel-box" style="flex: 1;">
@@ -86,6 +74,7 @@
                     <img src="/high-fidelity-prototype/images/CozyCabins1.jpg" style="width:100%; object-fit:cover;">
                 </div>
 </body>
-    <script src="/high-fidelity-prototype/scripting/script.js"></script>
-    <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+<script src="/scripting/script.js"></script>
+<script src="/scripting/navBar.js"></script>
+
 </html>
