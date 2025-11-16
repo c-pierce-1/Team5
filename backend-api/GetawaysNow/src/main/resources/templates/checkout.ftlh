@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>checkout</title>
+    <link rel="stylesheet" href="/Style-Sheet.css" />
+    <!-- Bootstrap Icons for the three dots -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <ul class="navbar-nav flex-row align-items-center">
+                <!-- Three dots dropdown -->
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu-left">
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
+                            <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
+                            <li><a class="dropdown-item"
+                                    href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a
+                                    Listing</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Logo -->
+                <li class="nav-item ms-3">
+                    <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
+                </li>
+            </ul>
+
+            <!-- Profile dropdown -->
+            <div class="ms-auto">
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle"
+                            width="40" height="40" />
+                    </button>
+                    <ul class="dropdown-menu-right">
+                        <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
+                        <li><a class="dropdown-item" href="/high-fidelity-prototype/logout.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="checkout-container" style="display: flex; gap: 2rem; margin: 2rem;">
+        <!-- Booking Info -->
+        <div class="booking-box" style="flex: 1;">
+            <h2>Check-Out</h2>
+            <label>Check-in Date</label>
+            <input type="text" value="2025-10-25" readonly>
+
+            <label>Total Nights</label>
+            <input type="text" value="3" readonly>
+
+            <label>Price per Night</label>
+            <input type="text" value="$180" readonly>
+
+            <label>Taxes</label>
+            <input type="text" value="$37.8" readonly>
+
+            <label>Cleaning Fees</label>
+            <input type="text" value="$20" readonly>
+
+            <label>Total</label>
+            <input type="text" value="$597.8" readonly>
+
+            <button class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">Confirm
+                Booking</button>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-box" style="flex: 1;">
+            <div class="carousel" style="position: relative; overflow: hidden; height: 800px;">
+                <div class="slides" id="checkout-slides" style="display: flex; transition: transform 0.3s ease;">
+                    <img src="/high-fidelity-prototype/images/CozyCabins1.jpg" style="width:100%; object-fit:cover;">
+                </div>
+</body>
+    <script src="/high-fidelity-prototype/scripting/script.js"></script>
+    <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
+</html>
