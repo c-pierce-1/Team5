@@ -135,16 +135,17 @@
                 ${listing.bedrooms} bd • ${listing.bathrooms} ba
             </p>
 
-            <p class="listing-description">
-               <#assign desc = listing.description!"" />
-                  <#if desc?length > 80>
-                      ${desc?substring(0, 80)}...
-                  <#else>
-                      ${desc}
-                  </#if>
-            </p>
+           <p class="listing-description">
+              <#assign desc = listing.description!"" />
 
-            <a href="/Listings/page/${listing.id}" class="view-btn">View Details</a>
+              <#if desc?length gt 80>
+                  ${desc?substring(0, 80)}...
+              <#else>
+                  ${desc}
+              </#if>
+          </p>
+
+           <a href="/listing/${listing.id}" class="view-btn">View Details</a>
         </div>
 
     </div>
