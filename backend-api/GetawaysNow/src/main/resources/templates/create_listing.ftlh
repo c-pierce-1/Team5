@@ -87,7 +87,12 @@
     </div>
 
     <!-- RIGHT SIDE — LISTING FORM -->
-    <form action="/listing/create" method="post" id="listing-form" class="listing-form-container">
+    <form action="/listing/create"
+      method="post"
+      enctype="multipart/form-data"
+      id="listing-form"
+      class="listing-form-container">
+
 
         <div class="form-header">
             <h1>Create Listing</h1>

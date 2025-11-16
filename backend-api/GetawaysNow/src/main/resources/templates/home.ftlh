@@ -111,14 +111,16 @@
 
  <#list listings as listing>
 
-        <#-- Determine First Image or Placeholder -->
-    <#assign imgs = listingImagesMap[listing.id]![]>
+   <#assign imgs = listingImagesMap[listing.id?string]![] />
 
     <#if imgs?size > 0>
-        <#assign imgPath = imgs[0].imagePath>
+        <#assign imgPath = imgs[0].imagePath />
     <#else>
-        <#assign imgPath = "/images/placeholder.jpg">
+        <#assign imgPath = "/images/placeholder.jpg" />
     </#if>
+
+
+
 
 
     <div class="listing-card">

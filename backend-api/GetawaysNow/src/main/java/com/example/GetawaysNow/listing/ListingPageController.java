@@ -1,6 +1,12 @@
 package com.example.GetawaysNow.listing;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
+
 
 @Controller
 @RequestMapping("/")   // Clean root URLs
@@ -60,18 +69,51 @@ public class ListingPageController {
      CREATE LISTING SUBMIT (POST)
      URL: /listing/create
     --------------------------------------------------------------*/
-    @PostMapping("/listing/create")
-    public String createListingSubmit(@ModelAttribute Listing listing) {
 
-        // TODO: Replace with actual logged-in user
-        Profile dummyProfile = new Profile();
-        dummyProfile.setProfileId(4L);
-        listing.setProfile(dummyProfile);
+   @PostMapping("/listing/create")
+    public String createListingSubmit(
+            @ModelAttribute Listing listing,
+            @RequestParam("images") MultipartFile[] images
+    ) throws IOException {
 
-        listingService.addListing(listing);
+    // TODO: Replace with logged-in user
+    Profile dummyProfile = new Profile();
+    dummyProfile.setProfileId(4L);
+    listing.setProfile(dummyProfile);
 
-        return "redirect:/listing/" + listing.getId();
+    // 1. Save listing first (so it has an ID)
+    Listing savedListing = listingService.addListing(listing);
+
+    // 2. Process images
+    for (MultipartFile file : images) {
+        if (!file.isEmpty()) {
+
+            // Generate a safe filename
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+            // Where to store images on disk
+            Path uploadPath = Paths.get("uploads");
+
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            // Save file to disk
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // Create listing image entry
+            ListingImages img = new ListingImages();
+            img.setListing(savedListing);
+            img.setImagePath("/uploads/" + fileName);
+
+            listingImagesService.saveImage(img);
+        }
     }
+
+    return "redirect:/listing/" + savedListing.getId();
+}
+
 
     /*--------------------------------------------------------------
      EDIT LISTING FORM

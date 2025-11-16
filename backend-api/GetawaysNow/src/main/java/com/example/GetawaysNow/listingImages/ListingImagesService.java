@@ -82,4 +82,9 @@ public class ListingImagesService {
             return null;
         }
     }
+    
+    public void saveImage(ListingImages img) {
+    listingImagesRepository.save(img);
+    }
+
 }
