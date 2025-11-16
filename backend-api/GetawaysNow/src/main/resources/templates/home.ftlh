@@ -113,7 +113,7 @@
 
    <#assign imgs = listingImagesMap[listing.id?string]![] />
 
-    <#if imgs?size > 0>
+    <#if imgs?has_content>
         <#assign imgPath = imgs[0].imagePath />
     <#else>
         <#assign imgPath = "/images/placeholder.jpg" />
@@ -136,8 +136,12 @@
             </p>
 
             <p class="listing-description">
-                <#assign desc = listing.description!"" />
-                ${desc?substring(0, desc?length?min(80))}...
+               <#assign desc = listing.description!"" />
+                  <#if desc?length > 80>
+                      ${desc?substring(0, 80)}...
+                  <#else>
+                      ${desc}
+                  </#if>
             </p>
 
             <a href="/Listings/page/${listing.id}" class="view-btn">View Details</a>
