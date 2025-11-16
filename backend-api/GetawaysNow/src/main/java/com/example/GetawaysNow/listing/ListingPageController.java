@@ -1,12 +1,6 @@
 package com.example.GetawaysNow.listing;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,49 +64,40 @@ public class ListingPageController {
      URL: /listing/create
     --------------------------------------------------------------*/
 
-   @PostMapping("/listing/create")
+ @PostMapping("/listing/create")
     public String createListingSubmit(
             @ModelAttribute Listing listing,
-            @RequestParam("images") MultipartFile[] images
-    ) throws IOException {
+            @RequestParam(value = "images", required = false) MultipartFile[] images
+    ) {
 
-    // TODO: Replace with logged-in user
-    Profile dummyProfile = new Profile();
-    dummyProfile.setProfileId(4L);
-    listing.setProfile(dummyProfile);
+    try {
+        // TEMP USER — replace later with session/auth
+        Profile dummyProfile = new Profile();
+        dummyProfile.setProfileId(4L);
+        listing.setProfile(dummyProfile);
 
-    // 1. Save listing first (so it has an ID)
-    Listing savedListing = listingService.addListing(listing);
+        // 1️⃣ Save listing first so it gets an ID
+        listingService.addListing(listing);
 
-    // 2. Process images
-    for (MultipartFile file : images) {
-        if (!file.isEmpty()) {
-
-            // Generate a safe filename
-            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-
-            // Where to store images on disk
-            Path uploadPath = Paths.get("uploads");
-
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
+        // 2️⃣ Save images if provided
+        if (images != null) {
+            for (MultipartFile file : images) {
+                if (!file.isEmpty()) {
+                    listingImagesService.saveImageFile(listing, file);
+                }
             }
-
-            // Save file to disk
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-
-            // Create listing image entry
-            ListingImages img = new ListingImages();
-            img.setListing(savedListing);
-            img.setImagePath("/uploads/" + fileName);
-
-            listingImagesService.saveImage(img);
         }
-    }
 
-    return "redirect:/listing/" + savedListing.getId();
+        // 3️⃣ Redirect to view page
+        return "redirect:/listing/" + listing.getId();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return "redirect:/error";
+    }
 }
+
+
 
 
     /*--------------------------------------------------------------

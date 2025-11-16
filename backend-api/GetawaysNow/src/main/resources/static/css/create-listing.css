@@ -42,6 +42,7 @@
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
+  color: black;
 }
 
 .image-upload-zone {
@@ -50,6 +51,7 @@
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  color: black;
 }
 
 
@@ -63,24 +65,23 @@
   position: relative;
 }
 
-/* Slide container (HORIZONTAL scroll strip) */
 .slides-listing {
-  display: flex;                 /* REQUIRED for sliding left/right */
+  display: flex;                 
   width: 100%;
   height: 100%;
   transition: transform 0.4s ease;
 }
 
-/* Each slide */
+
 .slide {
-  min-width: 100%;               /* EXACT width of container */
+  min-width: 100%;             
   height: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
 }
 
-/* Nav buttons */
+
 .image-carousel .nav {
   position: absolute;
   top: 50%;
@@ -98,10 +99,12 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 18px;
+  color: black;
 }
 
 .image-carousel .nav button:hover {
   background: white;
+  color: black;
 }
 
 .two-column-group {
@@ -114,3 +117,21 @@
   flex: 1;
 }
 
+/* Make only the right-side form text white */
+.listing-form-container,
+.listing-form-container h1,
+.listing-form-container h2,
+.listing-form-container h3,
+.listing-form-container label,
+.listing-form-container span,
+.listing-form-container p {
+    color: white !important;
+}
+
+/* Keep inputs readable */
+.listing-form-container input,
+.listing-form-container textarea,
+.listing-form-container select {
+    color: black !important;
+    background-color: white !important;
+}
