@@ -49,7 +49,7 @@
   </nav>
   <!-- Logo Section -->
 <div class="logo-container">
-  <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Getaways Now Logo" class="logo" />
+  <img src="/Logo.jpg" alt="Getaways Now Logo" class="logo" />
 </div>
 
 <!-- Search Bar -->
@@ -62,6 +62,6 @@
     <!-- Carousel Container -->
     <div id="carousel-container"></div>
 </body>
-  <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
-  <script src="/high-fidelity-prototype/scripting/home.js"></script>
+  <script src="/navBar.js"></script>
+  <script src="/home.js"></script>
 </html>

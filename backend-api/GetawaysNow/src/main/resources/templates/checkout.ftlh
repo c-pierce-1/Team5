@@ -31,7 +31,7 @@
             <div class="ms-auto">
                 <div class="dropdown">
                     <button class="dropdown-toggle">
-                        <img src="/images/default user.jpg" alt="Profile" class="rounded-circle" width="40"
+                        <img src="/default user.jpg" alt="Profile" class="rounded-circle" width="40"
                             height="40" />
                     </button>
                     <ul class="dropdown-menu-right">
@@ -60,7 +60,7 @@
             <input type="date" id="endDate" name="endDate">
 
             <label for="totalPrice">Total</label>
-            <input type="number" id="totalPrice" name="totalPrice" step="0.01" placeholder="e.g., 590.80">
+            <input type="number" id="totalPrice" name="totalPrice" step="0.01" placeholder="e.g., 590.50">
 
             <button type="submit" class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">
                 Confirm Booking
@@ -71,10 +71,9 @@
         <div class="carousel-box" style="flex: 1;">
             <div class="carousel" style="position: relative; overflow: hidden; height: 800px;">
                 <div class="slides" id="checkout-slides" style="display: flex; transition: transform 0.3s ease;">
-                    <img src="/high-fidelity-prototype/images/CozyCabins1.jpg" style="width:100%; object-fit:cover;">
+                    <img src="/CozyCabins1.jpg" style="width:100%; object-fit:cover;">
                 </div>
 </body>
-<script src="/scripting/script.js"></script>
-<script src="/scripting/navBar.js"></script>
+<script src="/navBar.js"></script>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,8 +9,9 @@
   <!-- Bootstrap Icons for the three dots -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
+
 <body>
- <nav class="navbar">
+  <nav class="navbar">
     <div class="container-fluid">
       <ul class="navbar-nav flex-row align-items-center">
         <!-- Three dots dropdown -->
@@ -19,17 +21,19 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu-left">
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/home.html">Home</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/customer-prototype/favorites.html">Favorites</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
-              <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a Listing</a></li>
+              <li><a class="dropdown-item" href="/">Home</a></li>
+              <!--
+               <li><a class="dropdown-item" href="/profile/${profile.profileId}/favorites">Favorites</a></li>
+               <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>
+               <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/create_listing.html">Create a Listing</a></li> 
+              -->
             </ul>
           </div>
         </li>
 
         <!-- Logo -->
         <li class="nav-item ms-3">
-          <img src="/high-fidelity-prototype/images/Logo.jpg" alt="Logo" width="100" height="50" />
+          <img src="/Logo.jpg" alt="Logo" width="100" height="50" />
         </li>
       </ul>
 
@@ -37,18 +41,21 @@
       <div class="ms-auto">
         <div class="dropdown">
           <button class="dropdown-toggle">
-            <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="rounded-circle" width="40" height="40" />
+            <img src="/default user.jpg" alt="Profile" class="rounded-circle" width="40"
+              height="40" />
           </button>
           <ul class="dropdown-menu-right">
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/profile.html">My Profile</a></li>
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/login.html">Login</a></li>
-            <li><a class="dropdown-item" href="/high-fidelity-prototype/logout.html">Logout</a></li>
+            <li><a class="dropdown-item" href="/profile/${profile.profileId}">My Profile</a></li>
+            <!--
+            <li><a class="dropdown-item" href="/login">Login</a></li>
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            -->
           </ul>
         </div>
       </div>
     </div>
   </nav>
-    <div class="profile-container">
+  <div class="profile-container">
     <!-- Header -->
     <div class="profile-header">
       <h1>Profile Page</h1>
@@ -57,56 +64,64 @@
     <!-- Profile Image -->
     <div class="profile-image">
       <label for="upload">
-        <img src="/high-fidelity-prototype/images/default user.jpg" alt="Profile" class="avatar" />
+        <img src="/default user.jpg" alt="Profile" class="avatar" />
       </label>
     </div>
 
     <!-- Info Fields -->
-    <div class="profile-info">
-      <div class="info-row" data-field="username">
-        <label>Username:</label>
-        <span class="value">SarahDev</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-       <div class="info-row">
-        <label>Name:</label>
-        <span class="value">Sarah Johnson</span>
-        <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
+    <form class="profile-info" action="/profile/update" method="POST">
+
+      <input type="hidden" name="profileId" value="${profile.profileId}">
+
       <div class="info-row">
-        <label>Phone:</label>
-        <span class="value">(555) 123-4567</span>
-         <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" class="edit-input" value="${profile.username}">
+      </div>
+
       <div class="info-row">
-        <label>Email:</label>
-        <span class="value">sarah@example.com</span>
-         <input type="text" class="edit-input" style="display: none;" />
-        <button class="edit-btn">Edit</button>
-        <button class="save-btn" style="display: none;">Save</button>
-        </div>
-    </div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" class="edit-input" value="${profile.firstName}">
+      </div>
+
+      <div class="info-row">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" class="edit-input" value="${profile.lastName}">
+      </div>
+
+      <div class="info-row">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="edit-input" value="${profile.email}">
+      </div>
+
+      <div class="info-row">
+        <label for="phoneNum">Phone:</label>
+        <input type="text" id="phoneNum" name="phoneNum" class="edit-input" value="${profile.phoneNum}">
+      </div>
+
+      <div class="info-row">
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+
+    </form>
 
     <!-- Stats -->
     <div class="profile-stats">
-      <div class="stat-box">
-        <h3>Total Listings</h3>
-        <p>2</p>
-      </div>
-      <div class="stat-box">
-        <h3>Total Bookings</h3>
-        <p>0</p>
-      </div>
+    </div>
+
+    <hr>
+
+    <h3>My Favorites</h3>
+    <div>
+      <#list profile.favorites as favorite>
+        <div class="favorite-card">
+          <p>${favorite.listing.name}</p>
+          <a href="/listing/${favorite.listing.id}">View</a>
+        </div>
+      </#list>
     </div>
 
   </div>
- <script src="/high-fidelity-prototype/scripting/navBar.js"></script>
-  <script src="/high-fidelity-prototype/scripting/profile.js"></script>
+  <script src="/navBar.js"></script>
 </body>
+
 </html>
