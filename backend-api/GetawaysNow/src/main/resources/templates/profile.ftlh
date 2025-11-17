@@ -21,7 +21,7 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu-left">
-              <li><a class="dropdown-item" href="/">Home</a></li>
+              <li><a class="dropdown-item" href="/home.ftlh">Home</a></li>
               <!--
                <li><a class="dropdown-item" href="/profile/${profile.profileId}/favorites">Favorites</a></li>
                <li><a class="dropdown-item" href="/high-fidelity-prototype/provider-prototype/my_listings.html">View My Listings</a></li>

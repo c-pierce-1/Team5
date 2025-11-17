@@ -1,5 +1,7 @@
 package com.example.GetawaysNow.listing;
 
+import java.math.BigDecimal;
+
 import com.example.GetawaysNow.Profile.Profile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,7 +43,7 @@ public class Listing {
     private String zipCode;
 
     @Column(nullable = false) 
-    private Float pricePerNight;
+    private BigDecimal pricePerNight;
 
     @Column(length=500) 
     private String description;
@@ -66,7 +68,7 @@ public class Listing {
     public Listing() {
     }
 
-    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms,
+    public Listing(Long id, String name, String address, String city, String state, String zipCode, BigDecimal pricePerNight, Integer bedrooms, Float bathrooms,
         Profile profileID) {
         this.id = id;
         this.name = name;
@@ -80,7 +82,7 @@ public class Listing {
         this.profileID = profileID;
     }
 
-    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms, 
+    public Listing(Long id, String name, String address, String city, String state, String zipCode, BigDecimal pricePerNight, Integer bedrooms, Float bathrooms, 
         Profile profileID, String description, String rules) {
         this.id = id;
         this.name = name;
@@ -122,7 +124,7 @@ public class Listing {
         return zipCode;
     }
 
-    public Float getPricePerNight() {
+    public BigDecimal getPricePerNight() {
         return pricePerNight;
     }
 
@@ -172,7 +174,7 @@ public class Listing {
         this.zipCode = zipCode;
     }
 
-    public void setPricePerNight(Float pricePerNight) {
+    public void setPricePerNight(BigDecimal pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
 

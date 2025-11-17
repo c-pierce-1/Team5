@@ -59,9 +59,6 @@
             <label for="endDate">Check-out Date</label>
             <input type="date" id="endDate" name="endDate">
 
-            <label for="totalPrice">Total</label>
-            <input type="number" id="totalPrice" name="totalPrice" step="0.01" placeholder="e.g., 590.50">
-
             <button type="submit" class="confirm-btn" style="background-color: hsl(216, 100%, 50%); color: white;">
                 Confirm Booking
             </button>
