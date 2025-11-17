@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class ListingImagesService {
 
-    private static final String UPLOAD_DIR = "src/main/resources/static/images/";
+    private static final String UPLOAD_DIR = "uploads/images";
 
     @Autowired
     private ListingImagesRepository listingImagesRepository;
@@ -69,34 +69,31 @@ public class ListingImagesService {
     }
 
 
-    /** --------------- NEW FILE SAVE LOGIC ---------------- **/
+    // *** FIXED FILE SAVE LOGIC ***
     public ListingImages saveImageFile(Listing listing, MultipartFile file) {
-
         try {
-            // Ensure folder exists
-            File uploadDir = new File(UPLOAD_DIR);
-            if (!uploadDir.exists()) uploadDir.mkdirs();
+            Path uploadPath = Paths.get(UPLOAD_DIR);
 
-            // Create a unique filename
-            String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
-            Path filepath = Paths.get(UPLOAD_DIR, filename);
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            Path filePath = uploadPath.resolve(fileName);
 
-            // Write file
-            Files.write(filepath, file.getBytes());
+            Files.write(filePath, file.getBytes());
 
-            // Save DB record
-            ListingImages image = new ListingImages();
-            image.setListing(listing);
-            image.setImagePath("/" + UPLOAD_DIR + filename);   // IMPORTANT so <img> can load it
+            ListingImages img = new ListingImages();
+            img.setListing(listing);
+            img.setImagePath("/uploads/images/" + fileName);
 
-            return listingImagesRepository.save(image);
+            return listingImagesRepository.save(img);
 
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to save image file", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error saving image", e);
         }
     }
-
 
     public String writeJson(ListingImages listingImages) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -117,5 +114,9 @@ public class ListingImagesService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void deleteImageById(Long id) {
+        listingImagesRepository.deleteById(id);
     }
 }

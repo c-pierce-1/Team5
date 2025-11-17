@@ -65,7 +65,6 @@
                 <div class="slides-listing" id="preview-slides">
                     <#if images?has_content>
                         <#list images as img>
-                            <!-- imagePath should already be like /uploads/xyz.jpg -->
                             <div class="slide" style="background-image: url('${img.imagePath}');"></div>
                         </#list>
                     <#else>

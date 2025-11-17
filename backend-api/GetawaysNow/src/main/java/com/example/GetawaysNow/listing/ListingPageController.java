@@ -117,19 +117,39 @@ public class ListingPageController {
     }
 
     /*--------------------------------------------------------------
-     EDIT LISTING SUBMIT (POST)
-     URL: /listing/{id}/edit
+    EDIT LISTING SUBMIT (POST)
+    URL: /listing/{id}/edit
     --------------------------------------------------------------*/
     @PostMapping("/listing/{id}/edit")
-    public String editListingSubmit(@PathVariable Long id, @ModelAttribute Listing listing) {
+    public String editListingSubmit(
+            @PathVariable Long id,
+            @ModelAttribute Listing listing,
+            @RequestParam(value = "images", required = false) MultipartFile[] newImages,
+            @RequestParam(value = "deleteImages", required = false) List<Long> deleteImages
+    ) {
 
-        Listing original = listingService.getListingById(id);
-        listing.setProfile(original.getProfileID());
-
+        Listing existing = listingService.getListingById(id);
+        listing.setProfile(existing.getProfileID());
         listingService.updateListing(id, listing);
+
+        // 1️⃣ Delete selected images
+        if (deleteImages != null) {
+            deleteImages.forEach(listingImagesService::deleteListingImages);
+        }
+
+        // 2️⃣ Save new image uploads
+        if (newImages != null) {
+            for (MultipartFile file : newImages) {
+                if (!file.isEmpty()) {
+                    listingImagesService.saveImageFile(listing, file);
+                }
+            }
+        }
 
         return "redirect:/listing/" + id;
     }
+
+
 
     /*--------------------------------------------------------------
      PROVIDER'S LISTINGS
