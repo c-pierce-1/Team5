@@ -111,17 +111,16 @@
 
  <#list listings as listing>
 
-   <#assign imgs = listingImagesMap[listing.id?string]![] />
+    <#assign key = listing.id?string />
+  <#assign imgs = listingImagesMap[key]![] />
+
+
 
     <#if imgs?has_content>
         <#assign imgPath = imgs[0].imagePath />
     <#else>
         <#assign imgPath = "/images/placeholder.jpg" />
     </#if>
-
-
-
-
 
     <div class="listing-card">
 
@@ -130,27 +129,28 @@
         <div class="listing-info">
             <h3>${listing.name}</h3>
             <p>${listing.city}, ${listing.state}</p>
+
             <p>
                 <strong>$${listing.pricePerNight}</strong> / night<br/>
                 ${listing.bedrooms} bd • ${listing.bathrooms} ba
             </p>
 
-           <p class="listing-description">
-              <#assign desc = listing.description!"" />
+            <p class="listing-description">
+                <#assign desc = listing.description!"" />
+                <#if desc?length gt 80>
+                    ${desc?substring(0, 80)}...
+                <#else>
+                    ${desc}
+                </#if>
+            </p>
 
-              <#if desc?length gt 80>
-                  ${desc?substring(0, 80)}...
-              <#else>
-                  ${desc}
-              </#if>
-          </p>
-
-           <a href="/listing/${listing.id}" class="view-btn">View Details</a>
+            <a href="/listing/${listing.id}" class="view-btn">View Details</a>
         </div>
 
     </div>
 
 </#list>
+
 
 
 </div>
