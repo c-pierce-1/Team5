@@ -18,7 +18,7 @@ import com.example.GetawaysNow.listingImages.ListingImagesService;
 
 
 @Controller
-@RequestMapping("/")   // Clean root URLs
+@RequestMapping("/") 
 public class ListingPageController {
 
     private final ListingService listingService;
@@ -76,10 +76,8 @@ public class ListingPageController {
         dummyProfile.setProfileId(4L);
         listing.setProfile(dummyProfile);
 
-        // 1️⃣ Save listing first so it gets an ID
         listingService.addListing(listing);
 
-        // 2️⃣ Save images if provided
         if (images != null) {
             for (MultipartFile file : images) {
                 if (!file.isEmpty()) {
@@ -88,7 +86,6 @@ public class ListingPageController {
             }
         }
 
-        // 3️⃣ Redirect to view page
         return "redirect:/listing/" + listing.getId();
 
     } catch (Exception e) {
@@ -132,12 +129,10 @@ public class ListingPageController {
         listing.setProfile(existing.getProfileID());
         listingService.updateListing(id, listing);
 
-        // 1️⃣ Delete selected images
         if (deleteImages != null) {
             deleteImages.forEach(listingImagesService::deleteListingImages);
         }
 
-        // 2️⃣ Save new image uploads
         if (newImages != null) {
             for (MultipartFile file : newImages) {
                 if (!file.isEmpty()) {
