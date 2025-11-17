@@ -43,13 +43,14 @@ public class Listing {
     @Column(nullable = false) 
     private Float pricePerNight;
 
-    @Column(length=500) 
+    @Column(columnDefinition = "TEXT")
     private String description;
+
 
     private String rules;
 
     @Column(nullable = false) 
-    private Integer bedrooms; 
+    private Float bedrooms; 
 
     @Column(nullable = false) 
     private Float bathrooms;
@@ -66,7 +67,7 @@ public class Listing {
     public Listing() {
     }
 
-    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms,
+    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Float bedrooms, Float bathrooms,
         Profile profileID) {
         this.id = id;
         this.name = name;
@@ -80,7 +81,7 @@ public class Listing {
         this.profileID = profileID;
     }
 
-    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Integer bedrooms, Float bathrooms, 
+    public Listing(Long id, String name, String address, String city, String state, String zipCode, Float pricePerNight, Float bedrooms, Float bathrooms, 
         Profile profileID, String description, String rules) {
         this.id = id;
         this.name = name;
@@ -134,7 +135,7 @@ public class Listing {
         return rules;
     }
 
-    public Integer getBedrooms() {
+    public Float getBedrooms() {
         return bedrooms;
     }
 
@@ -184,7 +185,7 @@ public class Listing {
         this.rules = rules;
     }
 
-    public void setBedrooms(Integer bedrooms) {
+    public void setBedrooms(Float bedrooms) {
         this.bedrooms = bedrooms;
     }
 
