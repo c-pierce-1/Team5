@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class HomeController {
 
@@ -31,9 +33,9 @@ public class HomeController {
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Float minPrice,
             @RequestParam(required = false) Float maxPrice,
-            Model model
+            Model model,
+            HttpSession session
     ) {
-
         // on default all listings should be displayed
         // but we can filter by the parameters
         List<Listing> listings = listingService.search(keyword, city, minPrice, maxPrice);
@@ -56,4 +58,6 @@ public class HomeController {
 
         return "home";
     }
+
+
 }
