@@ -11,6 +11,10 @@
 </head>
 
 <body>
+<#if error??>
+    <p style="color:red;">${error}</p>
+</#if>
+
 
 <#include "navbar.ftlh" />
 

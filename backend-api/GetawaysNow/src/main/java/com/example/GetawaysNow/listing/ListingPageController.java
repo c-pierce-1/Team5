@@ -1,6 +1,8 @@
 package com.example.GetawaysNow.listing;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -194,21 +196,35 @@ public class ListingPageController {
     /*--------------------------------------------------------------
      MY LISTINGS (Logged-in user only)
     --------------------------------------------------------------*/
-    @GetMapping("/my_listings")
-    public String myListingsForLoggedInUser(Model model, HttpSession session) {
+   @GetMapping("/my_listings")
+    public String myListings(Model model, HttpSession session) {
 
+        // Add username for navbar
         addSessionUser(model, session);
 
+        // Make sure user is logged in
         Long profileId = (Long) session.getAttribute("profileId");
         if (profileId == null) {
             return "redirect:/login";
         }
 
+        // Get listings owned by the logged-in user
         List<Listing> listings = listingService.getListingsByProfile(profileId);
-
         model.addAttribute("listings", listings);
+
+        Map<String, List<ListingImages>> listingImagesMap =
+                listings.stream()
+                        .collect(Collectors.toMap(
+                                l -> l.getId().toString(),
+                                l -> listingImagesService.getListingImagesByListing(l.getId())
+                        ));
+
+        model.addAttribute("listingImagesMap", listingImagesMap);
         model.addAttribute("bookings", List.of());
+
 
         return "my_listings";
     }
+
+
 }

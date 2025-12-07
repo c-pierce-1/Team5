@@ -28,7 +28,17 @@
                  id="listing-${listing.id}"
                  onclick="filterBookings(${listing.id})">
 
-                <img src="/images/placeholder.jpg" class="listing-thumb"/>
+                <#assign key = listing.id?string />
+                <#assign imgs = listingImagesMap[key]![] />
+
+                <#if imgs?has_content>
+                    <#assign imgPath = imgs[0].imagePath />
+                <#else>
+                    <#assign imgPath = "/images/placeholder.jpg" />
+                </#if>
+
+                <img src="${imgPath}" class="listing-thumb" />
+
 
                 <div class="listing-info">
                     <h3>${listing.name}</h3>
@@ -36,8 +46,8 @@
 
                     <p><strong>$${listing.pricePerNight}</strong> / night</p>
 
-                    <a class="view-btn" href="/Listings/page/${listing.id}">View</a>
-                    <a class="view-btn" href="/Listings/page/edit/${listing.id}">Edit</a>
+                    <a class="view-btn" href="/listing/${listing.id}">View</a>
+                    <a class="view-btn" href="/listing/${listing.id}/edit">Edit</a>
                 </div>
 
             </div>
