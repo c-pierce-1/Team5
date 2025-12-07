@@ -6,36 +6,17 @@
     <title>Edit ${listing.name}</title>
 
     <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/create-listing.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 </head>
 
 <body>
+<#if error??>
+    <p style="color:red;">${error}</p>
+</#if>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="container-fluid">
-        <ul class="navbar-nav flex-row align-items-center">
-            <li class="nav-item">
-                <div class="dropdown">
-                    <button class="dropdown-toggle">
-                        <i class="bi bi-three-dots-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu-left">
-                        <li><a class="dropdown-item" href="/">Home</a></li>
-                        <li><a class="dropdown-item" href="/my_listings">View My Listings</a></li>
-                        <li><a class="dropdown-item" href="/listing/create">Create a Listing</a></li>
-                    </ul>
-                </div>
-            </li>
 
-            <li class="nav-item ms-3">
-                <img src="/images/Logo.jpg" width="100" height="50">
-            </li>
-        </ul>
-    </div>
-</nav>
+<#include "navbar.ftlh" />
 
 <div class="form-and-carousel">
 
@@ -70,8 +51,6 @@
                 <i class="bi bi-images"></i>
                 <p>Drag & drop or click</p>
             </div>
-
-            <!-- ⛔ MUST BE INSIDE FORM — moved below -->
         </div>
 
     </div>

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class ListingImagesService {
 
+    // decalred contansts or image locations
     private static final String UPLOAD_DIR = "uploads/images";
 
     @Autowired
@@ -42,6 +43,7 @@ public class ListingImagesService {
         return listingImagesRepository.findBylistingID(listing);
     }
 
+
     public ListingImages addListingImages(ListingImages listingImages) {
 
         Listing listingFromRequest = listingImages.getListingID();
@@ -55,8 +57,10 @@ public class ListingImagesService {
         Listing listing = listingRepository.findById(listingId)
                 .orElseThrow(() -> new RuntimeException("Listing not found with id: " + listingId));
 
+        //set the listing for the listing image
         listingImages.setListing(listing);
 
+        
         return listingImagesRepository.save(listingImages);
     }
 
@@ -69,7 +73,7 @@ public class ListingImagesService {
     }
 
 
-    // *** FIXED FILE SAVE LOGIC ***
+    // save image file logic
     public ListingImages saveImageFile(Listing listing, MultipartFile file) {
         try {
             Path uploadPath = Paths.get(UPLOAD_DIR);

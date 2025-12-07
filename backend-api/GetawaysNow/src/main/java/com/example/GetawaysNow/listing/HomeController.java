@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class HomeController {
 
@@ -23,17 +25,22 @@ public class HomeController {
         this.listingImagesService = listingImagesService;
     }
 
+    // Default maping for the home page path is 
+    // parameters for searhing include keyword(name), city, min price, max price
     @GetMapping("/")
     public String index(
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) Float minPrice,
             @RequestParam(required = false) Float maxPrice,
-            Model model
+            Model model,
+            HttpSession session
     ) {
-
+        // on default all listings should be displayed
+        // but we can filter by the parameters
         List<Listing> listings = listingService.search(keyword, city, minPrice, maxPrice);
-
+        
+        // grabs the listing images per the listing and maps them to the id for reference
         Map<String, List<ListingImages>> listingImagesMap = listings.stream()
             .collect(Collectors.toMap(
                     l -> l.getId().toString(),
@@ -51,4 +58,6 @@ public class HomeController {
 
         return "home";
     }
+
+
 }

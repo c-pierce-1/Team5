@@ -1,6 +1,8 @@
 package com.example.GetawaysNow.listing;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.GetawaysNow.Profile.Profile;
+import com.example.GetawaysNow.Profile.ProfileRepository;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
 
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/") 
@@ -23,18 +27,31 @@ public class ListingPageController {
 
     private final ListingService listingService;
     private final ListingImagesService listingImagesService;
+    private final ProfileRepository profileRepository;
 
-    public ListingPageController(ListingService listingService, ListingImagesService listingImagesService) {
+    public ListingPageController(
+            ListingService listingService,
+            ListingImagesService listingImagesService,
+            ProfileRepository profileRepository) {
         this.listingService = listingService;
         this.listingImagesService = listingImagesService;
+        this.profileRepository = profileRepository;
+    }
+
+    private void addSessionUser(Model model, HttpSession session) {
+        Object username = session.getAttribute("username");
+        if (username != null) {
+            model.addAttribute("username", username.toString());
+        }
     }
 
     /*--------------------------------------------------------------
      VIEW LISTING PAGE
-     URL: /listing/{id}
     --------------------------------------------------------------*/
     @GetMapping("/listing/{id}")
-    public String viewListing(@PathVariable Long id, Model model) {
+    public String viewListing(@PathVariable Long id, Model model, HttpSession session) {
+
+        addSessionUser(model, session);
 
         Listing listing = listingService.getListingById(id);
         if (listing == null) {
@@ -51,33 +68,59 @@ public class ListingPageController {
 
     /*--------------------------------------------------------------
      CREATE LISTING FORM
-     URL: /listing/create
     --------------------------------------------------------------*/
     @GetMapping("/listing/create")
-    public String createListingForm(Model model) {
+    public String createListingForm(Model model, HttpSession session) {
+
+        addSessionUser(model, session);
+
+        // enforce login
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("listing", new Listing());
         return "create_listing";
     }
 
     /*--------------------------------------------------------------
-     CREATE LISTING SUBMIT (POST)
-     URL: /listing/create
+     CREATE LISTING SUBMIT
     --------------------------------------------------------------*/
-
- @PostMapping("/listing/create")
+    @PostMapping("/listing/create")
     public String createListingSubmit(
             @ModelAttribute Listing listing,
-            @RequestParam(value = "images", required = false) MultipartFile[] images
-    ) {
+            @RequestParam(value = "images", required = false) MultipartFile[] images,
+            Model model,
+            HttpSession session) {
 
-    try {
-        // TEMP USER — replace later with session/auth
-        Profile dummyProfile = new Profile();
-        dummyProfile.setProfileId(4L);
-        listing.setProfile(dummyProfile);
+        addSessionUser(model, session);
 
+        Long profileId = (Long) session.getAttribute("profileId");
+
+        if (profileId == null) {
+            model.addAttribute("errorMessage", "You must be logged in to create a listing.");
+            return "login";
+        }
+
+        // Attach logged-in profile
+        Profile userProfile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Logged-in profile not found"));
+
+        listing.setProfile(userProfile);
+
+        // Address duplication check
+        if (listingService.existsByAddressAndCity(listing.getAddress(), listing.getCity())) {
+            model.addAttribute("listing", listing);
+            model.addAttribute("errorMessage",
+                    "A listing already exists at this address in this city.");
+            return "create_listing";
+        }
+
+        // Save listing
         listingService.addListing(listing);
 
+        // Save images
         if (images != null) {
             for (MultipartFile file : images) {
                 if (!file.isEmpty()) {
@@ -87,22 +130,20 @@ public class ListingPageController {
         }
 
         return "redirect:/listing/" + listing.getId();
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        return "redirect:/error";
     }
-}
-
-
-
 
     /*--------------------------------------------------------------
      EDIT LISTING FORM
-     URL: /listing/{id}/edit
     --------------------------------------------------------------*/
     @GetMapping("/listing/{id}/edit")
-    public String editListingForm(@PathVariable Long id, Model model) {
+    public String editListingForm(@PathVariable Long id, Model model, HttpSession session) {
+
+        addSessionUser(model, session);
+
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null) {
+            return "redirect:/login";
+        }
 
         Listing listing = listingService.getListingById(id);
         List<ListingImages> images = listingImagesService.getListingImagesByListing(id);
@@ -114,19 +155,27 @@ public class ListingPageController {
     }
 
     /*--------------------------------------------------------------
-    EDIT LISTING SUBMIT (POST)
-    URL: /listing/{id}/edit
+     EDIT LISTING SUBMIT
     --------------------------------------------------------------*/
     @PostMapping("/listing/{id}/edit")
     public String editListingSubmit(
             @PathVariable Long id,
             @ModelAttribute Listing listing,
             @RequestParam(value = "images", required = false) MultipartFile[] newImages,
-            @RequestParam(value = "deleteImages", required = false) List<Long> deleteImages
-    ) {
+            @RequestParam(value = "deleteImages", required = false) List<Long> deleteImages,
+            HttpSession session,
+            Model model) {
+
+        addSessionUser(model, session);
+
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null) return "redirect:/login";
 
         Listing existing = listingService.getListingById(id);
+
+        // Keep original profile
         listing.setProfile(existing.getProfileID());
+
         listingService.updateListing(id, listing);
 
         if (deleteImages != null) {
@@ -144,20 +193,38 @@ public class ListingPageController {
         return "redirect:/listing/" + id;
     }
 
-
-
     /*--------------------------------------------------------------
-     PROVIDER'S LISTINGS
-     URL: /profile/{profileID}/listings
+     MY LISTINGS (Logged-in user only)
     --------------------------------------------------------------*/
-    @GetMapping("/profile/{profileID}/listings")
-    public String myListings(@PathVariable Long profileID, Model model) {
+   @GetMapping("/my_listings")
+    public String myListings(Model model, HttpSession session) {
 
-        List<Listing> listings = listingService.getListingsByProfile(profileID);
+        // Add username for navbar
+        addSessionUser(model, session);
 
+        // Make sure user is logged in
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null) {
+            return "redirect:/login";
+        }
+
+        // Get listings owned by the logged-in user
+        List<Listing> listings = listingService.getListingsByProfile(profileId);
         model.addAttribute("listings", listings);
-        model.addAttribute("profileID", profileID);
+
+        Map<String, List<ListingImages>> listingImagesMap =
+                listings.stream()
+                        .collect(Collectors.toMap(
+                                l -> l.getId().toString(),
+                                l -> listingImagesService.getListingImagesByListing(l.getId())
+                        ));
+
+        model.addAttribute("listingImagesMap", listingImagesMap);
+        model.addAttribute("bookings", List.of());
+
 
         return "my_listings";
     }
+
+
 }
