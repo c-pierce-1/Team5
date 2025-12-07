@@ -124,12 +124,10 @@
 
       </div>
 
-  </div> <!-- END form-and-carousel -->
+  </div> 
 
 </form>
 
-
-<script src="/scripting/navBar.js"></script>
 <script src="/scripting/createEdit.js"></script>
 
 </body>

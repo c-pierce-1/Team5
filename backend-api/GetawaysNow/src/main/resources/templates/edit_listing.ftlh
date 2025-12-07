@@ -51,8 +51,6 @@
                 <i class="bi bi-images"></i>
                 <p>Drag & drop or click</p>
             </div>
-
-            <!-- ⛔ MUST BE INSIDE FORM — moved below -->
         </div>
 
     </div>

@@ -42,14 +42,14 @@ public class LoginController {
             HttpSession session,
             Model model) {
 
-        // 1. Validation: both fields required
+        // Validation: both fields required
         if (username == null || username.isBlank() ||
             password == null || password.isBlank()) {
             model.addAttribute("error", "Username and password are required.");
             return "login";
         }
 
-        // 2. Lookup user
+        // Lookup user
         Optional<Profile> optional = profileRepository.findByUsername(username);
 
         if (optional.isEmpty()) {
@@ -59,13 +59,13 @@ public class LoginController {
 
         Profile profile = optional.get();
 
-        // 3. Check password (plaintext for now)
+        // Check password 
         if (!profile.getPassword().equals(password)) {
             model.addAttribute("error", "Incorrect password. Please try again.");
             return "login";
         }
 
-        // 4. SUCCESS – store user session
+        // store user session
         session.setAttribute("profileId", profile.getProfileId());
         session.setAttribute("username", profile.getUsername());
 

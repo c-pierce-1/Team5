@@ -72,18 +72,18 @@
 .nav-user-box {
   display: flex;
   align-items: center;
-  gap: 0.75rem;     /* perfect spacing between username and avatar */
-  white-space: nowrap;  /* prevents wrapping */
+  gap: 0.75rem;
+  white-space: nowrap;
 }
 
 /* USERNAME TEXT */
 .nav-username {
   font-weight: 600;
   color: white;
-  line-height: 1;       /* makes vertical centering perfect */
+  line-height: 1;
   display: flex;
-  align-items: center;  /* ensures it matches avatar vertical alignment */
-  margin-right: 4px;    /* tiny tune-up spacing */
+  align-items: center;
+  margin-right: 4px;
 }
 
 nav.navbar {
