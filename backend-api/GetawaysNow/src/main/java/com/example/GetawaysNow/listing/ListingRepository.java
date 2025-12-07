@@ -46,6 +46,7 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
     );
 
 
+    boolean existsByAddressAndCity(String address, String city);
 
 
 

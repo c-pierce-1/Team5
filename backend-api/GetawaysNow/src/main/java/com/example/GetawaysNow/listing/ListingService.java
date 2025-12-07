@@ -114,4 +114,9 @@ public class ListingService {
                 maxPrice
         );
     }
+
+    public boolean existsByAddressAndCity(String address, String city) {
+    return listingRepository.existsByAddressAndCity(address, city);
+}
+
 }

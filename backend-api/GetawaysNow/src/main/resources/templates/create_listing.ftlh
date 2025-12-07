@@ -92,6 +92,13 @@
               <h1>Create Listing</h1>
           </div>
 
+          <#if errorMessage??>
+              <div style="color:#b30000; margin-bottom:15px; font-weight:bold;">
+                  ${errorMessage}
+              </div>
+          </#if>
+
+
           <div class="form-group">
               <label>Name:</label>
               <input type="text" name="name" placeholder="Enter listing name" required />

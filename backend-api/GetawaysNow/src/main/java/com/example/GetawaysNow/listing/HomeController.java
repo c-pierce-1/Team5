@@ -23,6 +23,8 @@ public class HomeController {
         this.listingImagesService = listingImagesService;
     }
 
+    // Default maping for the home page path is 
+    // parameters for searhing include keyword(name), city, min price, max price
     @GetMapping("/")
     public String index(
             @RequestParam(required = false) String keyword,
@@ -32,8 +34,11 @@ public class HomeController {
             Model model
     ) {
 
+        // on default all listings should be displayed
+        // but we can filter by the parameters
         List<Listing> listings = listingService.search(keyword, city, minPrice, maxPrice);
-
+        
+        // grabs the listing images per the listing and maps them to the id for reference
         Map<String, List<ListingImages>> listingImagesMap = listings.stream()
             .collect(Collectors.toMap(
                     l -> l.getId().toString(),
