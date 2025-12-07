@@ -110,7 +110,6 @@
 
 </div>
 
-<script src="/scripting/navBar.js"></script>
 <script src="/scripting/home.js"></script>
 
 </body>

@@ -98,8 +98,6 @@
         </#list>
         </tbody>
     </table>
-
-    <script src="/scripting/navBar.js"></script>
     <script src="/scripting/myListings.js"></script>
 </body>
 </html>

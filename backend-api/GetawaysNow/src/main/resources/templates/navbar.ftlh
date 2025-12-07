@@ -56,3 +56,5 @@
 
   </div>
 </nav>
+
+<script src="/scripting/navBar.js"></script>

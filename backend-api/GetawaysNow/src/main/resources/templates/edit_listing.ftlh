@@ -131,7 +131,6 @@
     </form>
 </div>
 
-<script src="/scripting/navBar.js"></script>
 <script src="/scripting/editListing.js"></script>
 
 </body>
