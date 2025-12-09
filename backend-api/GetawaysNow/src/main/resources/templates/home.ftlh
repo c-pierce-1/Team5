@@ -84,6 +84,7 @@
         <div class="listing-info">
             <h3>${listing.name}</h3>
             <p>${listing.city}, ${listing.state}</p>
+
             <p>
                 <strong>$${listing.pricePerNight}</strong> / night<br/>
                 ${listing.bedrooms} bd • ${listing.bathrooms} ba
@@ -106,17 +107,10 @@
 </#list>
 
 
-<<<<<<< HEAD
+
 </div>
 
-<script src="/scripting/navBar.js"></script>
 <script src="/scripting/home.js"></script>
 
 </body>
 </html>
-=======
-
-</div>
-
-<script src="/scripting/home.js"></script>
-
