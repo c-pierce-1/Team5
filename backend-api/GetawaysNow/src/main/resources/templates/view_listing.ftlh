@@ -94,32 +94,62 @@
 
     </section>
 
-    <!-- BOTTOM: REVIEWS -->
+   <!-- BOTTOM: REVIEWS -->
     <section class="comments-section">
         <h2>Reviews</h2>
 
+        <!-- Guest Review Form -->
         <div class="add-comment-form">
-            <h3 class="add-comment-heading">Leave a comment</h3>
-            <form>
-                <div class="form-group">
-                    <label style="color:black;">Your Name</label>
-                    <input type="text" required>
-                </div>
+            <h3 class="add-comment-heading">Leave a Review</h3>
+
+            <form action="/reviews/add" method="POST">
+                <input type="hidden" name="listingId" value="${listing.id}">
 
                 <div class="form-group">
-                    <label style="color:black;">Your Comment</label>
-                    <textarea rows="4" required></textarea>
+                    <label style="color:black;">Your Review</label>
+                    <textarea name="comment" rows="4" required></textarea>
                 </div>
 
-                <button type="submit" class="submit-comment-button">Submit Comment</button>
+                <button type="submit" class="submit-comment-button">Submit Review</button>
             </form>
         </div>
 
+
+        <!-- Reviews List -->
         <div class="comments-list">
-            <h3>User Comments</h3>
-            <p>No comments yet.</p>
+            <h3>User Reviews</h3>
+
+            <#if reviews?size == 0>
+                <p>No reviews yet.</p>
+            <#else>
+                <#list reviews as review>
+                    <div class="comment">
+
+                        <strong>${review.profile.username}</strong>
+                        <p>${review.comment}</p>
+
+                        <#if listing.profileID?? 
+                            && listing.profileID.id?? 
+                            && session.profileId?? 
+                            && (listing.profileID.id == session.profileId)>
+                            
+                            <form action="/reviews/reply" method="POST" class="reply-form">
+                                <input type="hidden" name="listingId" value="${listing.id}">
+                                <input type="hidden" name="parentId" value="${review.id}">
+                                
+                                <textarea name="comment" rows="2" placeholder="Reply to this review..." required></textarea>
+                                <button type="submit">Reply</button>
+                            </form>
+
+                        </#if>
+
+                    </div>
+                </#list>
+            </#if>
         </div>
     </section>
+
+
 
 </main>
 

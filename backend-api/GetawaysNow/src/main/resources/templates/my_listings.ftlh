@@ -64,7 +64,7 @@
         </button>
     </div>
 
-    <!-- BOOKINGS TABLE SECTION -->
+   <!-- BOOKINGS TABLE SECTION -->
     <h2 class="section-title">Bookings for Your Listings</h2>
 
     <table>
@@ -75,7 +75,7 @@
                 <th>Guest</th>
                 <th>Check-In</th>
                 <th>Check-Out</th>
-                <th>Status</th>
+                <th>Total Price</th>
             </tr>
         </thead>
 
@@ -87,13 +87,13 @@
         </#if>
 
         <#list bookings as b>
-            <tr class="booking-row" data-listing-id="${b.listingId}">
+            <tr class="booking-row" data-listing-id="${b.listing.id}">
                 <td>${b.id}</td>
-                <td>${b.listingName}</td>
-                <td>${b.guestName}</td>
+                <td>${b.listing.name}</td>
+                <td>${b.profile.username}</td>
                 <td>${b.startDate}</td>
                 <td>${b.endDate}</td>
-                <td>${b.status}</td>
+                <td>$${b.totalPrice}</td>
             </tr>
         </#list>
         </tbody>

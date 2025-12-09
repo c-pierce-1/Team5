@@ -18,6 +18,8 @@ import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.Profile.ProfileRepository;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
+import com.example.GetawaysNow.review.Review;
+import com.example.GetawaysNow.review.ReviewService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,14 +30,17 @@ public class ListingPageController {
     private final ListingService listingService;
     private final ListingImagesService listingImagesService;
     private final ProfileRepository profileRepository;
+    private final ReviewService reviewService;
 
     public ListingPageController(
             ListingService listingService,
             ListingImagesService listingImagesService,
-            ProfileRepository profileRepository) {
+            ProfileRepository profileRepository,
+            ReviewService reviewService) {
         this.listingService = listingService;
         this.listingImagesService = listingImagesService;
         this.profileRepository = profileRepository;
+        this.reviewService = reviewService;
     }
 
     private void addSessionUser(Model model, HttpSession session) {
@@ -59,9 +64,11 @@ public class ListingPageController {
         }
 
         List<ListingImages> images = listingImagesService.getListingImagesByListing(id);
+        List<Review> reviews = reviewService.getTopLevelReviews(listing);
 
         model.addAttribute("listing", listing);
         model.addAttribute("images", images);
+        model.addAttribute("reviews", reviews);
 
         return "view_listing";
     }
