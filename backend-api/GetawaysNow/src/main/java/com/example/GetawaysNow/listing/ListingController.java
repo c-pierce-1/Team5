@@ -22,7 +22,8 @@ public class ListingController {
    */
   @GetMapping("/Listings")
   public Object getAllListings() {
-    return ListingService.getAllListings();
+    return ListingService.findAllListings();
+
   }
 
 
@@ -105,7 +106,7 @@ public class ListingController {
   @DeleteMapping("/Listings/{id}")
   public Object deleteListing(@PathVariable Long id) {
     ListingService.deleteListing(id);
-    return ListingService.getAllListings();
+    return ListingService.findAllListings();
   }
 
   /**

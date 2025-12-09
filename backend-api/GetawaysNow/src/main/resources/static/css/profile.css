@@ -1,0 +1,39 @@
+.profile-container {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #4c8ea8;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.profile-image { text-align: center; margin: 2rem 0; }
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile-info .info-row {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-box {
+  background: #e6f2f7;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+}

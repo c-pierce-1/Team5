@@ -1,0 +1,67 @@
+/* SEARCH BAR */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+#search-bar {
+  width: 500px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.search-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container button i {
+  color: #555;
+  font-size: 1.2rem;
+}
+
+/* HOME LOGO */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CAROUSEL */
+.carousel-wrapper {
+  display: flex;
+  flex-direction: row;
+  max-width: 900px;
+  margin: 2rem auto;
+  gap: 1rem;
+}
+
+.carousel {
+  flex: 2;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.nav button {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+}

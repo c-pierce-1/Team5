@@ -28,17 +28,14 @@ public class ListingImages {
     @Column(nullable = false)
     private String imagePath;
 
-    // ✅ Required by JPA
     public ListingImages() {}
 
-    // ✅ Optional convenience constructor
     public ListingImages(Long id, Listing listingID, String imagePath) {
         this.id = id;
         this.listingID = listingID;
         this.imagePath = imagePath;
     }
 
-    // ✅ Getters and setters
     public Long getId() {
         return id;
     }

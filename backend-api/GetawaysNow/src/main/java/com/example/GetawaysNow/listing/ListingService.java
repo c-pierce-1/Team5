@@ -2,10 +2,10 @@ package com.example.GetawaysNow.listing;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.Profile.ProfileRepository;
@@ -14,150 +14,109 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class ListingService {
 
-  @Autowired
-  private ListingRepository ListingRepository;
-  @Autowired
-  private ProfileRepository profileRepository;
+    @Autowired
+    private ListingRepository listingRepository;
 
-  /**
-   * Method to get all Listings
-   *
-   * @return List of all Listings
-   */
-  public Object getAllListings() {
-    return ListingRepository.findAll();
-  }
-
-  /**
-   * Method to get a Listing by ID
-   *
-   * @param ListingId The ID of the Listing to retrieve
-   * @return The Listing with the specified ID
-   */
-  public Listing getListingById(@PathVariable long ListingId) {
-    return ListingRepository.findById(ListingId).orElse(null);
-  }
-
-   /**
-   * Method to get Listings by address
-   *
-   * @param address The address of the Listing to search for
-   * @return List of Listings with the specified address
-   */
-  public Object getListingsByAddress(String address) {
-    return ListingRepository.getListingsByAddress(address);
-  }
-
+    @Autowired
+    private ProfileRepository profileRepository;
 
     /**
-   * Method to get Listings by name
-   *
-   * @param name The name of the Listing to search for
-   * @return List of Listings with the specified name
-   */
-  public Object getListingsByName(String name) {
-    return ListingRepository.getListingsByName(name);
-  }
+     * Returns no listings on initial page load.
+     */
+    public List<Listing> findAllListings() {
+        return List.of();  // <-- return empty list instead of hitting DB
+    }
+
+    public Listing getListingById(long id) {
+        return listingRepository.findById(id).orElse(null);
+    }
+
+    public List<Listing> getListingsByAddress(String address) {
+        return listingRepository.getListingsByAddress(address);
+    }
+
+    public List<Listing> getListingsByName(String name) {
+        return listingRepository.getListingsByName(name);
+    }
+
+    public List<Listing> getListingsByCity(String city) {
+        return listingRepository.getListingsByCity(city);
+    }
+
+    public List<Listing> getListingsByProfile(Long profileId) {
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
+
+        return listingRepository.findByProfileID(profile);
+    }
 
     /**
-   * Method to get Listings by city
-   *
-   * @param city The city of the Listing to search for
-   * @return List of Listings with the specified city
-   */
-  public Object getListingsByCity(String city) {
-    return ListingRepository.getListingsByCity(city);
-  }
+     * Add listing with validated profile.
+     */
+    public Listing addListing(Listing listing) {
 
-   /**
-   * Method to get Listings by profile
-   *
-   * @param profileID The profile of the Listing to search for
-   * @return List of Listings with the specified profile
-   */
-  public Object getListingsByProfile(Long profileId) {
-    Profile profile = profileRepository.findById(profileId)
-        .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
+        if (listing.getProfileID() == null || listing.getProfileID().getProfileId() == null) {
+            throw new IllegalArgumentException("Listing must include a valid Profile ID");
+        }
 
-    return ListingRepository.findByProfileID(profile);
-}
+        Long profileId = listing.getProfileID().getProfileId();
 
+        Profile profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
 
+        listing.setProfile(profile);
 
-  /**
-   * Method to add a new Listing
-   *
-   * @param Listing The Listing to add
-   */
-public Listing addListing(Listing listing) {
-    // Get the Profile object (from JSON) that only has the ID set
-    Profile profileFromRequest = listing.getProfileID();
-
-    // Extract the ID as a Long
-    Long profileId = profileFromRequest.getProfileId();
-
-    // Fetch the full Profile entity from the database
-    Profile profile = profileRepository.findById(profileId)
-            .orElseThrow(() -> new RuntimeException("Profile not found with id: " + profileId));
-
-    // Attach the real Profile entity to the listing
-    listing.setProfile(profile);
-
-    // Save the Listing
-    return ListingRepository.save(listing);
-}
-
-
-  /**
-   * Method to update a Listing
-   *
-   * @param ListingId The ID of the Listing to update
-   * @param Listing   The updated Listing information
-   */
-  public Listing updateListing(Long ListingId, Listing Listing) {
-    return ListingRepository.save(Listing);
-  }
-
-  /**
-   * Method to delete a Listing
-   *
-   * @param ListingId The ID of the Listing to delete
-   */
-  public void deleteListing(Long ListingId) {
-    ListingRepository.deleteById(ListingId);
-  }
-
-  /**
-   * Method to write a Listing object to a JSON file
-   *
-   * @param Listing The Listing object to write
-   */
-  public String writeJson(Listing Listing) {
-    ObjectMapper objectMapper = new ObjectMapper();
-    try {
-      objectMapper.writeValue(new File("Listings.json"), Listing);
-      return "Listing written to JSON file successfully";
-    } catch (IOException e) {
-      e.printStackTrace();
-      return "Error writing Listing to JSON file";
+        return listingRepository.save(listing);
     }
 
-  }
-
-  /**
-   * Method to read a Listing object from a JSON file
-   *
-   * @return The Listing object read from the JSON file
-   */
-  public Object readJson() {
-    ObjectMapper objectMapper = new ObjectMapper();
-    try {
-      return objectMapper.readValue(new File("Listings.json"), Listing.class);
-    } catch (IOException e) {
-      e.printStackTrace();
-      return null;
+    public Listing updateListing(Long id, Listing listing) {
+        return listingRepository.save(listing);
     }
 
-  }
+    public void deleteListing(Long id) {
+        listingRepository.deleteById(id);
+    }
+
+    public String writeJson(Listing listing) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new File("Listings.json"), listing);
+            return "Listing written to JSON file successfully";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error writing Listing to JSON file";
+        }
+    }
+
+    public Object readJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(new File("Listings.json"), Listing.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Updated search method — handles nulls safely to avoid PostgreSQL LOWER(BYTEA) error.
+     */
+    public List<Listing> search(String keyword, String city, Float minPrice, Float maxPrice) {
+
+        // Normalize inputs
+        keyword = (keyword == null || keyword.isBlank()) ? null : keyword.trim();
+        city = (city == null || city.isBlank()) ? null : city.trim();
+
+        return listingRepository.search(
+                keyword,
+                city,
+                minPrice,
+                maxPrice
+        );
+    }
+
+    public boolean existsByAddressAndCity(String address, String city) {
+    return listingRepository.existsByAddressAndCity(address, city);
+}
 
 }
