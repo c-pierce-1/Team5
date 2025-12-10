@@ -43,28 +43,25 @@ function markForDeletion(id, btn) {
     input.type = "hidden";
     input.name = "deleteImages";
     input.value = id;
-
     container.appendChild(input);
 
-    btn.parentElement.remove();
-    refreshPreviewSlides();
+    const slide = btn.closest(".existing-image");
+    slide.remove();
 }
+
+
+
 
 function refreshPreviewSlides() {
     const container = document.getElementById("preview-slides");
-    container.innerHTML = "";
 
-    // Existing images (not deleted)
-    document.querySelectorAll(".existing-image").forEach(img => {
-        container.appendChild(img);
-    });
+    container.querySelectorAll(".new-image-preview").forEach(e => e.remove());
 
-    // New uploads
     selectedNewFiles.forEach(file => {
         const reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = function(e) {
             const slide = document.createElement("div");
-            slide.className = "slide";
+            slide.className = "slide new-image-preview";
             slide.style.backgroundImage = `url('${e.target.result}')`;
 
             container.appendChild(slide);
@@ -74,6 +71,7 @@ function refreshPreviewSlides() {
 
     updateCarouselPosition();
 }
+
 
 function updateCarouselPosition() {
     const slides = document.querySelectorAll("#preview-slides .slide");
