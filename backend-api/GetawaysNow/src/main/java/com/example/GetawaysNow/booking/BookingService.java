@@ -1,8 +1,9 @@
 package com.example.GetawaysNow.booking;
 
 
-import java.math.BigDecimal;
 import java.util.List;
+
+import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,15 +47,15 @@ public class BookingService {
         LocalDate start = bookingDetails.getStartDate();
         LocalDate end = bookingDetails.getEndDate();
         Long nights = ChronoUnit.DAYS.between(start, end);
-        BigDecimal pricePerNight = listing.getPricePerNight();
-        BigDecimal totalPrice = pricePerNight.multiply(new BigDecimal(nights));
+        float pricePerNight = listing.getPricePerNight();
+        float totalPrice = pricePerNight*nights;
 
         Booking newBooking = new Booking();
         newBooking.setProfile(profile);
         newBooking.setListing(listing);
         newBooking.setStartDate(start);
         newBooking.setEndDate(end);
-        newBooking.setTotalPrice(totalPrice);
+        newBooking.setTotalPrice(BigDecimal.valueOf(totalPrice));
 
         return bookingRepository.save(newBooking);
     }
@@ -84,12 +85,12 @@ public class BookingService {
         }
 
         long nights = ChronoUnit.DAYS.between(start,end);
-        BigDecimal pricePerNight = existingBooking.getListing().getPricePerNight();
-        BigDecimal totalPrice = pricePerNight.multiply(new BigDecimal(nights));
+        float pricePerNight = existingBooking.getListing().getPricePerNight();
+        float totalPrice = pricePerNight*nights;
         
         existingBooking.setStartDate(start);
         existingBooking.setEndDate(end);
-        existingBooking.setTotalPrice(totalPrice);
+        existingBooking.setTotalPrice(BigDecimal.valueOf(totalPrice));
 
         return bookingRepository.save(existingBooking);
     }

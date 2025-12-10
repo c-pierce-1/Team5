@@ -32,6 +32,10 @@ public class FavoriteService {
 
     public Favorite createFavorite(Long profileId, Long listingId) {
 
+        if(favoriteRepository.existsByProfileProfileIdAndListingId(profileId, listingId)){
+            throw new IllegalStateException("Already favorited!");
+        }
+
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new EntityNotFoundException("Profile not found"));
 

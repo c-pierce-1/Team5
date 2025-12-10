@@ -44,7 +44,12 @@
             <form class="listing-form" action="#" method="POST">
                 <div class="form-header">
                     <h1>${listing.name}</h1>
-                    <span id="favorite-icon" class="favorite-icon-btn bi bi-heart"></span>
+                    <form action="/favorite/add" method="POST" style="display:inline;">
+                        <input type = "hidden" name="listingId" value="${listing.id}">
+                        <button type = "submit" class="favorite-icon-btn" style="background:none; border:none; cursor:pointer;">
+                            <i class="bi bi-heart" style="font-size: 1.5rem; color: red;"></i>
+                        </button>
+                    </form>
                 </div>
 
                 <div class="form-details">
@@ -87,7 +92,7 @@
                 </div>
 
                 <button class="checkout-button" type="button">
-                    <a style="color: inherit; text-decoration: none;" href="/checkout">Book Now</a>
+                    <a style="color: inherit; text-decoration: none;" href="/checkout/listing/${listing.id}">Book Now</a>
                 </button>
             </form>
         </div>

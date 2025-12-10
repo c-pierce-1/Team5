@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BookingController{
@@ -17,18 +18,29 @@ public class BookingController{
         this.bookingService = bookingService;
     }
 
-    @GetMapping("/checkout/profile/{profileId}/listing/{listingId}")
-    public String showCheckoutForm(@PathVariable Long profileId, @PathVariable Long listingId, Model model){
+    @GetMapping("/checkout/listing/{listingId}")
+    public String showCheckoutForm(@PathVariable Long listingId, HttpSession session, Model model){
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null){
+            return "redirect:/login";
+        }
+        
         model.addAttribute("booking", new Booking());
         model.addAttribute("profileId", profileId);
         model.addAttribute("listingId", listingId);
+
         return "checkout";
     }
 
     @PostMapping("/booking/create")
-    public String createBooking(Booking booking, @RequestParam Long profileId, @RequestParam Long listingId){
+    public String createBooking(Booking booking, @RequestParam Long listingId, HttpSession session){
+        Long profileId = (Long) session.getAttribute("profileId");
+        if (profileId == null){
+            return "redirect:/login";
+        }
+
         bookingService.createBooking(profileId, listingId, booking);
+
         return "redirect:/profile/" + profileId;
     }
-
 }
