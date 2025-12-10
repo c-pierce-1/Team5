@@ -13,7 +13,7 @@
           </button>
           <ul class="dropdown-menu-left">
             <li><a class="dropdown-item" href="/">Home</a></li>
-            <li><a class="dropdown-item" href="/favorites">Favorites</a></li>
+            <li><a class="dropdown-item" href="/profile">Favorites</a></li>
             <li><a class="dropdown-item" href="/my_listings">View My Listings</a></li>
             <li><a class="dropdown-item" href="/listing/create">Create a Listing</a></li>
           </ul>
