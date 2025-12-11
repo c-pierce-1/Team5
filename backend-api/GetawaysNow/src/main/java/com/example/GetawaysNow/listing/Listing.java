@@ -1,5 +1,6 @@
 package com.example.GetawaysNow.listing;
 
+
 import com.example.GetawaysNow.Profile.Profile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -41,7 +42,7 @@ public class Listing {
     private String zipCode;
 
     @Column(nullable = false) 
-    private Float pricePerNight;
+    private float pricePerNight;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -123,7 +124,7 @@ public class Listing {
         return zipCode;
     }
 
-    public Float getPricePerNight() {
+    public float getPricePerNight() {
         return pricePerNight;
     }
 
@@ -173,7 +174,7 @@ public class Listing {
         this.zipCode = zipCode;
     }
 
-    public void setPricePerNight(Float pricePerNight) {
+    public void setPricePerNight(float pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
 

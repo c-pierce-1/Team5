@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findByProfileProfileId(Long profileId);
+
+    boolean existsByProfileProfileIdAndListingId(Long profileId, Long listingId);
 }

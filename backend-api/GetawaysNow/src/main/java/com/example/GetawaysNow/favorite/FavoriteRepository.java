@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
     List<Favorite> findByProfileProfileId(Long profileId);
+
+    boolean existsByProfileProfileIdAndListingId(Long profileId, Long listingId);
 }

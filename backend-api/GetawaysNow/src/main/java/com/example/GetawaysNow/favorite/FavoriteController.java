@@ -1,19 +1,17 @@
 package com.example.GetawaysNow.favorite;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpSession;
 
-@RestController
-@RequestMapping("/api/favorites")
+import jakarta.servlet.http.HttpSession;
+
+@Controller
 public class FavoriteController {
 
     private final FavoriteService favoriteService;
@@ -23,22 +21,22 @@ public class FavoriteController {
         this.favoriteService = favoriteService;
     }
 
-    @PostMapping
-    public ResponseEntity<Favorite> createFavorite(@RequestParam Long profileId, @RequestParam Long listingId) {
-        Favorite newFavorite = favoriteService.createFavorite(profileId, listingId);
-        return ResponseEntity.ok(newFavorite);
-    }
+    @PostMapping("/favorite/add")
+    public String addFavorite(@RequestParam Long listingId, HttpSession session){
+        Long profileId = (Long) session.getAttribute("profileId");
 
-    @GetMapping("/profile/{profileId}")
-    public ResponseEntity<List<Favorite>> getFavoritesByProfileId(@PathVariable Long profileId) {
-        List<Favorite> favorites = favoriteService.getFavoritesByProfileId(profileId);
-        return ResponseEntity.ok(favorites);
-    }
+        if(profileId == null){
+            return "redirect:/login";
+        }
 
-    @DeleteMapping("/{favoriteId}")
-    public ResponseEntity<Void> deleteFavorite(@PathVariable Long favoriteId) {
-        favoriteService.deleteFavorite(favoriteId);
-        return ResponseEntity.noContent().build();
+        try {
+            favoriteService.createFavorite(profileId, listingId);
+        } catch (Exception e) {
+            System.out.println("Duplicate favorite attempted");
+        }
+
+        return "redirect:/listing/" + listingId;
     }
 
 }
+
