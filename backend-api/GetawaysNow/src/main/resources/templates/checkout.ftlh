@@ -15,7 +15,7 @@
 
     <div class="checkout-container" style="display: flex; gap: 2rem; margin: 2rem;">
 
-        <form class="booking-box" style="flex: 1;" action="/booking/create" method="POST">
+        <form id="bookingForm" class="booking-box" style="flex: 1;" action="/booking/create" method="POST">
 
             <h2>Check-Out</h2>
             <p>Price per night: <strong>$${listing.pricePerNight}</strong></p>
@@ -24,10 +24,12 @@
             <input type="hidden" name="listingId" value="${listingId}">
 
             <label for="startDate">Check-in Date</label>
-            <input type="date" id="startDate" name="startDate">
+            <input type="date" id="startDate" name="startDate" required>
 
             <label for="endDate">Check-out Date</label>
-            <input type="date" id="endDate" name="endDate">
+            <input type="date" id="endDate" name="endDate" required>
+
+            <div id="error-message" style="color: red; display: none;"></div>
 
             <div id="price-summary"
                 style="margin: 20px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px; display: none;">
@@ -89,6 +91,27 @@
             }
             startInput.addEventListener('change', calculateTotal);
             endInput.addEventListener('change', calculateTotal);
+
+            document.getElementById('bookingForm').addEventListener('submit', function (event) {
+                const start = document.getElementById('startDate').value;
+                const end = document.getElementById('endDate').value;
+                const errorDiv = document.getElementById('error-message');
+
+                errorDiv.style.display = 'none';
+                errorDiv.innerText = '';
+
+                if (start && end) {
+                    const startDate = new Date(start);
+                    const endDate = new Date(end);
+
+                    if (startDate >= endDate) {
+                        event.preventDefault();
+
+                        errorDiv.innerText = "Warning: Check-out date must be AFTER Check-in date.";
+                        errorDiv.style.display = 'block';
+                    }
+                }
+            });
         </script>
 </body>
 
