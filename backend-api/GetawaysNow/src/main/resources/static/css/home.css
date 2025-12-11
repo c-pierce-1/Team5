@@ -65,3 +65,13 @@
   color: white;
   font-size: 2rem;
 }
+
+.location-banner {
+    text-align: center;
+    background: #eef7ff;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}

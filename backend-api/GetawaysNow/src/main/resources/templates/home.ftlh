@@ -19,6 +19,16 @@
   <img src="/images/Logo.jpg" alt="Getaways Now Logo" class="logo" />
 </div>
 
+<#if userCity??>
+    <div class="location-banner">
+        <p>📍 Showing listings near <strong>${userCity}, ${userRegion}</strong></p>
+    </div>
+<#else>
+    <div class="location-banner">
+        <p>📍 Location unavailable — showing all listings</p>
+    </div>
+</#if>
+
 <!-- SEARCH BAR -->
 <div class="search-container">
   <form method="get" action="/" style="display:flex; gap:10px; width:100%; justify-content:center;">
