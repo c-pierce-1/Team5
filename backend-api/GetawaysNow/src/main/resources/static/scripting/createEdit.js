@@ -60,7 +60,6 @@ function handleFiles(files) {
 
 uploadZone.addEventListener("click", () => fileInput.click());
 
-// FILE INPUT CHANGE
 fileInput.addEventListener("change", (e) => {
     handleFiles(e.target.files);
 });
