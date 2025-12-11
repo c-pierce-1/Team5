@@ -1,16 +1,15 @@
 package com.example.GetawaysNow.booking;
 
 
-import java.util.List;
-
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.temporal.ChronoUnit;
-import java.time.LocalDate;
 import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.Profile.ProfileRepository;
 import com.example.GetawaysNow.listing.Listing;
@@ -102,5 +101,11 @@ public class BookingService {
         bookingRepository.deleteById(id);
     }
 
+    public List<Booking> getBookingsForListingIds(List<Long> listingIds) {
+        return bookingRepository.findByListingIdIn(listingIds);
+    }
+
 
 }
+
+

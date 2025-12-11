@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.GetawaysNow.Profile.Profile;
 import com.example.GetawaysNow.Profile.ProfileRepository;
+import com.example.GetawaysNow.booking.Booking;
+import com.example.GetawaysNow.booking.BookingService;
 import com.example.GetawaysNow.listingImages.ListingImages;
 import com.example.GetawaysNow.listingImages.ListingImagesService;
 import com.example.GetawaysNow.review.Review;
@@ -31,16 +33,19 @@ public class ListingPageController {
     private final ListingImagesService listingImagesService;
     private final ProfileRepository profileRepository;
     private final ReviewService reviewService;
+    private final BookingService bookingService;
 
     public ListingPageController(
             ListingService listingService,
             ListingImagesService listingImagesService,
             ProfileRepository profileRepository,
-            ReviewService reviewService) {
+            ReviewService reviewService,
+            BookingService bookingService) {
         this.listingService = listingService;
         this.listingImagesService = listingImagesService;
         this.profileRepository = profileRepository;
         this.reviewService = reviewService;
+        this.bookingService = bookingService;
     }
 
     private void addSessionUser(Model model, HttpSession session) {
@@ -226,8 +231,17 @@ public class ListingPageController {
                                 l -> listingImagesService.getListingImagesByListing(l.getId())
                         ));
 
+        List<Long> listingIds = listings.stream()
+                                .map(Listing::getId)
+                                .collect(Collectors.toList());
+
+        List<Booking> bookings = bookingService.getBookingsForListingIds(listingIds);
+
+
         model.addAttribute("listingImagesMap", listingImagesMap);
-        model.addAttribute("bookings", List.of());
+
+        model.addAttribute("bookings", bookings);
+
 
 
         return "my_listings";
