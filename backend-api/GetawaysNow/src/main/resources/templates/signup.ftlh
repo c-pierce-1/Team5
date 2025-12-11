@@ -34,45 +34,35 @@
 
                 <div class="mb-3 row">
                     <label for="inputUsername" class="col-sm-3 col-form-label">Username/Email:</label>
-                    <div class="col-sm-9"> <input type="text" 
-                               name="username" 
-                               id="inputUsername" 
-                               class="form-control" 
-                               required />
+                    <div class="col-sm-9"> <input type="text" name="username" id="inputUsername" class="form-control"
+                            required />
                     </div>
                 </div>
 
                 <div class="mb-3 row align-items-center">
-                    <label for="inputPassword" class="col-sm-3 col-form-label">Password:</label>
-                    <div class="col-sm-9">
-                        <input type="password" 
-                               name="password" 
-                               id="inputPassword" 
-                               class="form-control" 
-                               maxlength="26" 
-                               required>
+                    <label for="confirmPassword" class="col-sm-3 col-form-label">Password:</label>
+                    <div class="col-sm-9 d-flex align-items-center">
+                        <input type="password" name="password" id="inputPassword" class="form-control me-2"
+                            maxlength="26" required>
                     </div>
                 </div>
 
                 <div class="mb-3 row align-items-center">
                     <label for="confirmPassword" class="col-sm-3 col-form-label">Confirm Password:</label>
                     <div class="col-sm-9 d-flex align-items-center">
-                        <input type="password" 
-                               name="confirmPassword" 
-                               id="confirmPassword" 
-                               class="form-control me-2" 
-                               maxlength="26" 
-                               required>
-                        
+                        <input type="password" name="confirmPassword" id="confirmPassword" class="form-control me-2"
+                            maxlength="26" required>
+
                         <div class="form-check mb-0" style="min-width: 70px;">
-                            <input type="checkbox" class="form-check-input" onclick="togglePassword()" id="showPassword">
-                            <label class="form-check-label" for="showPassword">Show</label>
+                            <input type="checkbox" class="form-check-input" onclick="togglePassword()"
+                                id="confirmPassword">
+                            <label class="form-check-label" for="confirmPassword">Show</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-4 text-center"> <button type="submit" class="btn w-50"
-                            style="background-color: hsl(216, 100%, 50%); color: white;">
+                        style="background-color: hsl(216, 100%, 50%); color: white;">
                         Create Account
                     </button>
                 </div>
@@ -85,7 +75,15 @@
             </form>
         </div>
     </div>
-
+    <script>
+        function togglePassword() {
+            var pass = document.getElementById("inputPassword");
+            var confirmPass = document.getElementById("confirmPassword");
+            var type = pass.type === "password" ? "text" : "password";
+            pass.type = type;
+            confirmPass.type = type;
+        }
+    </script>
 
     <script src="scripting/showPassword.js"></script>
     <script src="scripting/login_signup_field_validation.js"></script>
